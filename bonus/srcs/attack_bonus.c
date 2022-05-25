@@ -12,7 +12,15 @@
 
 #include "../includes/so_long_bonus.h"
 
-int     is_at_range(t_foe *f, t_player *p)
+static void foe_anim_attack(t_foe *foe)
+{
+    if (foe->frame == 8)
+        foe->frame = 0;
+    foe->current = foe->sprites[2][foe->frame];
+    foe->frame++;
+}
+
+static int     is_at_range(t_foe *f, t_player *p)
 {
     if ((f->pos_y == p->pos_y && f->pos_x == p->pos_x)
         || (f->pos_y - 64 == p->pos_y && f->pos_x == p->pos_x)
@@ -23,12 +31,26 @@ int     is_at_range(t_foe *f, t_player *p)
     return (0);
 }
 
-void    ft_player_attack(t_datas *datas, t_foe *target)
+void    ft_player_attack(t_datas *datas)
 {
+    t_foe   *target;
+
+    while (*datas->foe)
+    {
+        if (is_at_range(*datas->foe, datas->player))
+        {
+            target = *datas->foe;
+            break;
+        }
+        datas->foe++;
+    }
     datas->player->current = datas->player->attack;
-    target->hp -= datas->player->damage;
-    if (target->hp <= 0)
-        ft_foe_death(datas->foes, target);
+    if (target)
+    {
+        target->hp -= datas->player->damage;
+        if (target->hp <= 0)
+            ft_foe_death(datas->foes, target);
+    }
 }
 
 void    ft_foe_attack(t_datas *datas)
@@ -41,9 +63,9 @@ void    ft_foe_attack(t_datas *datas)
         if (is_at_range(datas->foes[i], datas->player))
         {
             if (datas->foes[i]->type == 'U')
-                ft_unicorn_anim_attack(datas->foes[i]);
+                foe_anim_attack(datas->foes[i]);
             else if (datas->foes[i]->type == 'D')
-                ft_dragon_anim_attack(datas->foes[i]);
+                foe_anim_attack(datas->foes[i]);
             if (datas->foes[i]->frame == 8)
                 datas->player->hp -= datas->foes[i]->damage;
             if (datas->player->hp <= 0)

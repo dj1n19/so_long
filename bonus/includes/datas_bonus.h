@@ -13,7 +13,6 @@
 #ifndef DATAS_BONUS_H
 # define DATAS_BONUS_H
 # define TILESIZE 64
-
 /*
 ** edge_imgs[top_left, top, top_right, right, bot_right, bot, bot_left, left]
 */
@@ -43,7 +42,7 @@ typedef struct	s_player
 	void	*current;
 }				t_player;
 
-typedef struct	s_unicorn
+typedef struct	s_foe
 {
 	int		pos_x;
 	int		pos_y;
@@ -51,21 +50,10 @@ typedef struct	s_unicorn
 	int		frame;
 	int		damage;
 	char	direction;
-	void	*unicorn[2][8];
+	char	type;	
+	void	*sprites[3][8];
 	void	*current;
-}				t_unicorn;
-
-typedef struct	s_dragon
-{
-	int		pos_x;
-	int		pos_y;
-	int		hp;
-	int		frame;
-	int		damage;
-	char	direction;
-	void	*dragon[2][8];
-	void	*current;
-}				t_dragon;
+}				t_foe;
 
 typedef struct	s_datas
 {
@@ -77,8 +65,7 @@ typedef struct	s_datas
 	int					exit_code;
 	struct s_map		*map;
 	struct s_player		*player;
-	struct s_unicorn	**unicorns;
-	struct s_dragon		**dragons;
+	struct s_foe		**foes;
 }				t_datas;
 
 typedef enum	e_keys

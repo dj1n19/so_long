@@ -22,8 +22,10 @@ int	ft_hook(t_datas *datas)
 {
 	if (datas->keycode == ESC)
 		ft_close(datas);
+	if (datas->keycode == LETTER_E)
+		ft_player_attack(datas);
 	else if (datas->keycode != -1);
 		ft_move(datas->keycode, datas);
-	usleep(100000);
+	usleep(150000);
 	return (0);
 }

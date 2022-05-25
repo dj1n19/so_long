@@ -35,7 +35,6 @@ SRC_BONUS = bonus/srcs/attack_bonus.c \
 			bonus/srcs/character_check_bonus.c \
 			bonus/srcs/draw_item_bonus.c \
 			bonus/srcs/error_bonus \
-			bonus/srcs/foes_animation_bonus.c \
 			bonus/srcs/free_bonus.c \
 			bonus/srcs/hook_bonus.c \
 			bonus/srcs/init_bonus.c \
