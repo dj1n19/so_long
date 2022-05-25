@@ -1,0 +1,14 @@
+*.swp
+*.a
+*/*.a
+*/*/*.a
+a.out
+so_long
+so_long_bonus
+*.o
+*/*.o
+*/*/*.o
+assets/png
+assets/*.tar
+keys*
+test*
