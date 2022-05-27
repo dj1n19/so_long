@@ -64,6 +64,17 @@ static void	load_edges(t_datas *datas)
 	}
 }
 
+static void	load_portal(void **exit_close, void *, void *mlx)
+{
+	int	w;
+	int	h;
+	int	i;
+
+	w = TILESIZE;
+	h = TILESIZE;
+	portal_close[0] = mlx_xpm_file_to_image(mlx, "assets/edge_top.xpm", &w, &h);
+}
+
 void	ft_load_textures(t_datas *datas)
 {
 	int	i;

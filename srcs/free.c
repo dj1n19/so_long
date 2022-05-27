@@ -41,6 +41,7 @@ int	ft_close(t_datas *datas)
 		mlx_destroy_window(datas->mlx, datas->win);
 	if (datas)
 		free(datas);
+	system("leaks so_long");
 	exit(exit_code);
 	return (0);
 }

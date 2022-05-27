@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef ERROR_BONUS_H
-# define ERROR_H
+# define ERROR_BONUS_H
 # define E_ARGS "wrong number of arguments"
 # define E_FILE "wrong file format"
 # define E_OPEN "failed to open file"

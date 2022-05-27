@@ -17,12 +17,12 @@ static void	load_up(t_datas *datas)
 	int			i;
 	int			w;
 	int			h;
-	void		***p;
+	void		*p[4][8];
 	void		*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
-	p = datas->player;
+	p = datas->player->player;
 	mlx = datas->mlx;
 	i = 0;
 	p[0][0] = mlx_xpm_file_to_image(mlx, "assets/player_up_1.xpm", &w, &h);
@@ -46,12 +46,12 @@ static void	load_right(t_datas *datas)
 	int	i;
 	int			w;
 	int			h;
-	void		***p;
+	void		*p;
 	void		*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
-	p = datas->player;
+	p = datas->player->player;
 	mlx = datas->mlx;
 	i = 0;
 	p[1][0] = mlx_xpm_file_to_image(mlx, "assets/player_right_1.xpm", &w, &h);
@@ -75,12 +75,12 @@ static void	load_down(t_datas *datas)
 	int	i;
 	int			w;
 	int			h;
-	void		***p;
+	void		*p;
 	void		*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
-	p = datas->player;
+	p = datas->player->player;
 	mlx = datas->mlx;
 	i = 0;
 	p[2][0] = mlx_xpm_file_to_image(mlx, "assets/player_down_1.xpm", &w, &h);
@@ -104,12 +104,12 @@ static void	load_left(t_datas *datas)
 	int	i;
 	int			w;
 	int			h;
-	void		***p;
+	void		*p;
 	void		*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
-	p = datas->player;
+	p = datas->player->player;
 	mlx = datas->mlx;
 	i = 0;
 	p[3][0] = mlx_xpm_file_to_image(mlx, "assets/player_left_1.xpm", &w, &h);

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/so_long_bonus.h"
+
 static void	foe_anim_right(t_foe *foe)
 {
 	if (foe->frame == 8)
