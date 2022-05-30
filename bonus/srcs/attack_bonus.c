@@ -16,7 +16,7 @@ static void foe_anim_attack(t_foe *foe)
 {
     if (foe->frame == 8)
         foe->frame = 0;
-    foe->current = foe->sprites[2][foe->frame];
+    foe->current = foe->sprites_attack[foe->frame];
     foe->frame++;
 }
 
@@ -35,21 +35,21 @@ void    ft_player_attack(t_datas *datas)
 {
     t_foe   *target;
 
-    while (*datas->foe)
+    while (*datas->foes)
     {
-        if (is_at_range(*datas->foe, datas->player))
+        if (is_at_range(*datas->foes, datas->player))
         {
-            target = *datas->foe;
+            target = *datas->foes;
             break;
         }
-        datas->foe++;
+        datas->foes++;
     }
     datas->player->current = datas->player->attack;
     if (target)
     {
         target->hp -= datas->player->damage;
-        if (target->hp <= 0)
-            ft_foe_death(datas->foes, target);
+        /*if (target->hp <= 0)
+            ft_foe_death(datas->foes, target);*/
     }
 }
 

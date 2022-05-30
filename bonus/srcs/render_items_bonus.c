@@ -15,28 +15,28 @@
 static void	draw_chest(t_datas *datas, int x, int y)
 {	
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->items[0][datas->map->frame],
+			datas->map->item_chest[datas->map->frame],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_gems(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->items[1][datas->map->frame],
+			datas->map->item_gems[datas->map->frame],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_crystal(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->items[2][datas->map->frame],
+			datas->map->item_crystal[datas->map->frame],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_gold(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->items[4][datas->map->frame],
+			datas->map->item_gold[datas->map->frame],
 			TILESIZE * x, TILESIZE * y);
 }
 

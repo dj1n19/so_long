@@ -18,7 +18,7 @@ static void	draw_exit(t_datas *datas, int x, int y)
 	{
 		if (datas->map->portal_open == 0)
 		{
-			mlx_put_image_to_window(datas->mlx, datas-.win,
+			mlx_put_image_to_window(datas->mlx, datas->win,
 					datas->map->exit_close, TILESIZE * x, TILESIZE * y);
 		}
 		else
@@ -27,6 +27,7 @@ static void	draw_exit(t_datas *datas, int x, int y)
 					datas->map->exit_open[datas->map->frame],
 					TILESIZE * x, TILESIZE * y);
 		}
+	}
 }
 
 static void	draw_walls(t_datas *datas, int x, int y)

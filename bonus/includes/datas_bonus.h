@@ -27,7 +27,10 @@ typedef struct	s_map
 	void	*wall;
 	void	*exit_open[8];
 	void	*exit_close;
-	void	*items[4][8];
+	void	*item_chest[8];
+	void	*item_gems[8];
+	void	*item_crystal[8];
+	void	*item_gold[8];
 	char	**blueprint;
 }				t_map;
 
@@ -38,7 +41,11 @@ typedef struct	s_player
 	int		hp;
 	int		frame;
 	int		damage;
-	void	*player[4][8];
+	void	*player_up[8];
+	void	*player_right[8];
+	void	*player_down[8];
+	void	*player_left[8];
+	void	*attack;
 	void	*current;
 }				t_player;
 
@@ -51,7 +58,9 @@ typedef struct	s_foe
 	int		damage;
 	char	direction;
 	char	type;	
-	void	*sprites[3][8];
+	void	*sprites_right[8];
+	void	*sprites_left[8];
+	void	*sprites_attack[8];
 	void	*current;
 }				t_foe;
 

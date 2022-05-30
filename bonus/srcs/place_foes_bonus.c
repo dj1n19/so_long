@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long_bonus.h"
+#include "../includes/so_long_bonus.h"
 
 static int place_unicorn(t_foe *unicorn, int x, int y)
 {
@@ -39,9 +39,9 @@ void    ft_place_foes(t_datas *datas)
         x = 1;
         while (x < datas->map->size_x - 1)
         {
-            if (map->blueprint[y][x] == 'D')
+            if (datas->map->blueprint[y][x] == 'D')
                 place_dragon(datas->foes[i], x, y);
-            else if (map->blueprint[y][x] == 'U')
+            else if (datas->map->blueprint[y][x] == 'U')
                 place_unicorn(datas->foes[i], x, y);
         }
     }

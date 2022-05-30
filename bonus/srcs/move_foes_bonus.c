@@ -17,7 +17,7 @@ static void	foe_anim_right(t_foe *foe)
 	if (foe->frame == 8)
 		foe->frame = 0;
 	foe->pos_x += 8;
-	foe->current = foe->foe[0][foe->frame];
+	foe->current = foe->sprites_right[foe->frame];
 	foe->frame++;
 }
 
@@ -26,7 +26,7 @@ static void	foe_anim_left(t_foe *foe)
 	if (foe->frame == 8)
 		foe->frame = 0;
 	foe->pos_x -= 8;
-	foe->current = foe->foe[1][foe->frame];
+	foe->current = foe->sprites_left[foe->frame];
 	foe->frame++;
 }
 
@@ -69,11 +69,11 @@ void    ft_move_foes(t_datas *datas)
     ft_foe_attack(datas);
     while (*datas->foes)
     {
-        foe = *datas->foe
-        if (foes->direction == 'R')
+        foe = *datas->foes;
+        if (foe->direction == 'R')
             move_foe_right(datas->map, foe);
         else if (foe->direction == 'L')
             move_foe_left(datas->map, foe);
-        ++datas->foe;
+        ++datas->foes;
     }
 }

@@ -19,10 +19,11 @@
 # include "datas_bonus.h"
 # include "error_bonus.h"
 # include "libft.h"
+# include <stdio.h>
 
 void    ft_player_attack(t_datas *datas);
 void    ft_foe_attack(t_datas *datas);
-int     ft_check_unicorn(t_map *map);
+int     ft_check_unicorns(t_map *map);
 int     ft_check_dragons(t_map *map);
 void    ft_check_player(t_datas *datas);
 void    ft_e_open(t_datas *datas);

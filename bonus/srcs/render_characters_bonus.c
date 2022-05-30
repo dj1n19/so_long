@@ -12,7 +12,7 @@
 
 #include "../includes/so_long_bonus.h"
 
-static void	draw_unicorn(t_datas *datas)
+static void	draw_foes(t_datas *datas)
 {
 	int	i;
 
@@ -26,20 +26,14 @@ static void	draw_unicorn(t_datas *datas)
 	}
 }
 
-static void	draw_dragon(t_datas *datas)
+static void	draw_player(t_datas *datas)
 {
-	//TO_DO
-}
-
-static void	draw_player(t_datas *datas);
-{
-	mlx_put_to_image(datas->mlx, datas->win, datas->player->current,
+	mlx_put_image_to_window(datas->mlx, datas->win, datas->player->current,
 			datas->player->pos_x, datas->player->pos_x);
 }
 
 void	ft_draw_characters(t_datas *datas)
 {
 	draw_player(datas);
-	draw_unicorn(datas);
-	draw_dragon(datas);
+	draw_foes(datas);
 }

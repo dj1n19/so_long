@@ -25,4 +25,5 @@
 # define E_TEX_ITEM "failed to load an item texture"
 # define E_TEX_EDGE "failed to load an edge texture"
 # define E_TEX_OBJ "failed to load a map object"
+# define E_TEX_FOE  "failed to load a foe texture"
 #endif

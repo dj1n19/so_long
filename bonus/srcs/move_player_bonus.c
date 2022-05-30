@@ -22,7 +22,7 @@ static void	move_north(t_datas *datas)
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
 		}
-		player_anim_north(datas->player);
+		ft_player_anim_north(datas->player);
 	}
 }
 
@@ -36,7 +36,7 @@ static void	move_east(t_datas *datas)
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
 		}
-		player_anim_east(datas->player);
+		ft_player_anim_east(datas->player);
 	}
 }
 
@@ -50,7 +50,7 @@ static void	move_south(t_datas *datas)
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
 		}
-		player_anim_south(datas->player);
+		ft_player_anim_south(datas->player);
 	}
 }
 
@@ -64,7 +64,7 @@ static void	move_west(t_datas *datas)
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
 		}
-		player_anim_west(datas->player);
+		ft_player_anim_west(datas->player);
 	}
 }
 

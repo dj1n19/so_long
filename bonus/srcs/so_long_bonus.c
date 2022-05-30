@@ -24,7 +24,7 @@ static void	ft_init(char *file)
 {
 	t_datas		*datas;
 
-	datas = ft_init_datas();
+	datas = ft_init_datas(file);
 	datas->mlx = mlx_init();
 	ft_load_textures(datas);
 	ft_load_player(datas);

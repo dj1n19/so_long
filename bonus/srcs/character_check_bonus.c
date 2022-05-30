@@ -20,7 +20,7 @@ int	ft_check_unicorns(t_map *map)
 
 	unicorn_count = 0;
 	y = 1;
-	while (y < map->size_y - 1);
+	while (y < map->size_y - 1)
 	{
 		x = 1;
 		while (x < map->size_x - 1)

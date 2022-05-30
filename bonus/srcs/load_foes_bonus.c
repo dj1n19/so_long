@@ -3,124 +3,132 @@
 /*                                                        :::      ::::::::   */
 /*   load_foes_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:06:07 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 01:49:30 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/05/30 17:35:57 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-static void load_unicorn_right(t_foe *unicorn, void *mlx)
+static void load_unicorn_right(t_datas *datas, t_foe *unicorn, void *mlx)
 {
-	int	i;
-	int	x;
-	int	y;
+	int		i;
+	int		x;
+	int		y;
+	void	**u;
 
+	u = unicorn->sprites_right;
 	x = TILESIZE;
 	y = TILESIZE;
-	unicorn[0][0] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][1] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][2] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][3] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][4] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][5] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][6] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
-	unicorn[0][7] = mlx_xpm_file_image(mlx,	"assets/unicorn_right.xpm", &x, &y);
+	u[0] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_1.xpm", &x, &y);
+	u[1] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_2.xpm", &x, &y);
+	u[2] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_3.xpm", &x, &y);
+	u[3] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_4.xpm", &x, &y);
+	u[4] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_5.xpm", &x, &y);
+	u[5] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_6.xpm", &x, &y);
+	u[6] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_7.xpm", &x, &y);
+	u[7] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_8.xpm", &x, &y);
 	i = 0;
 	while ( i < 8)
 	{
-		if (!unicorn[0][i])
-			ft_e_load(5);
+		if (!u[i])
+			ft_e_load(5, datas);
 	}
 }
 
-static void	load_unicorn_left(t_foe *unicorn, void * mlx)
+static void	load_unicorn_left(t_datas *datas, t_foe *unicorn, void * mlx)
 {
-	int	i;
-	int	x;
-	int	y;
+	int		i;
+	int		x;
+	int		y;
+	void	**u;
 
+	u = unicorn->sprites_left;
 	x = TILESIZE;
 	y = TILESIZE;
-	unicorn[1][0] = mlx_xpm_file_image(mlx,	"assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][1] = mlx_xpm_file_image(mlx,	"assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][2] = mlx_xpm_file_image(mlx,	"assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][3] = mlx_xpm_file_image(mlx,	"assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][4] = mlx_xpm_file_image(mlx, "assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][5] = mlx_xpm_file_image(mlx, "assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][6] = mlx_xpm_file_image(mlx, "assets/unicorn_left.xpm", &x, &y);
-	unicorn[1][7] = mlx_xpm_file_image(mlx, "assets/unicorn_left.xpm", &x, &y);
+	u[0] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_1.xpm", &x, &y);
+	u[1] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_2.xpm", &x, &y);
+	u[2] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_3.xpm", &x, &y);
+	u[3] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_4.xpm", &x, &y);
+	u[4] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_5.xpm", &x, &y);
+	u[5] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_6.xpm", &x, &y);
+	u[6] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_7.xpm", &x, &y);
+	u[7] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_left_8.xpm", &x, &y);
 	i = 0;
 	while (i < 8)
 	{
-		if (!unicorn[0][i])
-			ft_e_load(5);
+		if (!u[i])
+			ft_e_load(5, datas);
 	}
 }
 
-static void load_dragon_right(t_foe *dragon, void *mlx)
+static void load_dragon_right(t_datas *datas, t_foe *dragon, void *mlx)
 {
-	int	i;
-	int	x;
-	int	y;
+	int		i;
+	int		x;
+	int		y;
+	void	**d;
 
+	d = dragon->sprites_right;
 	x = TILESIZE;
 	y = TILESIZE;
-	dragon[0][0] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][1] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][2] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][3] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][4] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][5] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][6] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
-	dragon[0][7] = mlx_xpm_file_image(mlx, "assets/dragon_right.xpm", &x, &y);
+	d[0] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_1.xpm", &x, &y);
+	d[1] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_2.xpm", &x, &y);
+	d[2] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_3.xpm", &x, &y);
+	d[3] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_4.xpm", &x, &y);
+	d[4] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_5.xpm", &x, &y);
+	d[5] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_6.xpm", &x, &y);
+	d[6] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_7.xpm", &x, &y);
+	d[7] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_8.xpm", &x, &y);
 	i = 0;
-	while ( i < 8)
+	/*while ( i < 8)
 	{
-		if (!dragon[0][i])
-			ft_e_load(5);
-	}
+		if (!d[i])
+			ft_e_load(5, datas);
+	}*/
 }
 
-static void	load_dragon_left(t_foe *dragon, void *mlx)
+static void	load_dragon_left(t_datas *datas, t_foe *dragon, void *mlx)
 {
-	int	i;
-	int	x;
-	int	y;
+	int		i;
+	int		x;
+	int		y;
+	void	**d;
 
+	d = dragon->sprites_left;
 	x = TILESIZE;
 	y = TILESIZE;
-	dragon[1][0] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][1] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][2] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][3] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][4] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][5] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][6] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
-	dragon[1][7] = mlx_xpm_file_image(mlx, "assets/dragon_left.xpm", &x, &y);
+	d[0] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_1.xpm", &x, &y);
+	d[1] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_2.xpm", &x, &y);
+	d[2] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_3.xpm", &x, &y);
+	d[3] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_4.xpm", &x, &y);
+	d[4] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_5.xpm", &x, &y);
+	d[5] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_6.xpm", &x, &y);
+	d[6] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_7.xpm", &x, &y);
+	d[7] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_8.xpm", &x, &y);
 	i = 0;
-	while (i < 8)
+	/*while (i < 8)
 	{
-		if (!dragon[0][i])
-			ft_e_load(5);
-	}
+		if (!d[i])
+			ft_e_load(5, datas);
+	}*/
 }
 
 void	ft_load_foes(t_datas *datas)
 {
 	while (*datas->foes)
 	{
-		if (*(datas->foes)->type = 'U')
+		if ((*datas->foes)->type == 'U')
 		{
-			load_unicorn_right(*datas->foes, datas->mlx);
-			load_unicorn_left(*datas->foes, datas->mlx);
+			load_unicorn_right(datas, *datas->foes, datas->mlx);
+			load_unicorn_left(datas, *datas->foes, datas->mlx);
 		}
-		else if (*(datas->foes)->type = 'D')
+		else if ((*datas->foes)->type == 'D')
 		{
-			load_dragon_right(*datas->foes, datas->mlx);
-			load_dragon_left(*datas->foes, datas->mlx);			
+			load_dragon_right(datas, *datas->foes, datas->mlx);
+			load_dragon_left(datas, *datas->foes, datas->mlx);			
 		}
 		datas->foes++;
 	}
