@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   datas_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:15:20 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/23 17:56:28 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:31:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef struct	s_player
 	void	*player_right[8];
 	void	*player_down[8];
 	void	*player_left[8];
-	void	*attack;
+	void	*player_attack[8];
+	void	*attack[8];
+	void	*spell[8];
 	void	*current;
 }				t_player;
 
@@ -56,11 +58,15 @@ typedef struct	s_foe
 	int		hp;
 	int		frame;
 	int		damage;
+	int		is_attacking;
 	char	direction;
 	char	type;	
 	void	*sprites_right[8];
 	void	*sprites_left[8];
-	void	*sprites_attack[8];
+	void	*sprites_attack_right[8];
+	void	*sprites_attack_left[8];
+	void	*sprites_death_right[8];
+	void	*sprites_death_left[8];
 	void	*current;
 }				t_foe;
 
@@ -72,6 +78,7 @@ typedef struct	s_datas
 	int					keycode;
 	int					collected;
 	int					exit_code;
+	int					is_moving;
 	struct s_map		*map;
 	struct s_player		*player;
 	struct s_foe		**foes;

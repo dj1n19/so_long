@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:43:53 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/25 12:43:59 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/01 15:53:43 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,79 @@
 
 static void	move_north(t_datas *datas)
 {
-	if (datas->map->blueprint[datas->player->pos_y - 64][datas->player->pos_x]
-			!= '1')
+	if (datas->map->blueprint[(datas->player->pos_y - 64) / 64]
+			[datas->player->pos_x / 64] == '1' && datas->player->frame == 0)
+		datas->is_moving = 0;
+	else
 	{
 		if (datas->player->frame == 8)
 		{
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
+			datas->is_moving = 0;
+			datas->player->frame = 0;
 		}
-		ft_player_anim_north(datas->player);
+		else
+			ft_player_anim_north(datas->player);
 	}
 }
 
 static void	move_east(t_datas *datas)
 {
-	if (datas->map->blueprint[datas->player->pos_y][datas->player->pos_x + 64]
-			!= '1')
+	if (datas->map->blueprint[datas->player->pos_y / 64]
+			[(datas->player->pos_x + 64) / 64] == '1'
+			&& datas->player->frame == 0)
+		datas->is_moving = 0;
+	else
 	{
 		if (datas->player->frame == 8)
 		{
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
+			datas->is_moving = 0;
+			datas->player->frame = 0;
 		}
-		ft_player_anim_east(datas->player);
+		else
+			ft_player_anim_east(datas->player);
 	}
 }
 
 static void	move_south(t_datas *datas)
 {
-	if (datas->map->blueprint[datas->player->pos_y + 64][datas->player->pos_x]
-			!= '1')
+	if (datas->map->blueprint[(datas->player->pos_y + 64) / 64]
+			[datas->player->pos_x / 64] == '1' && datas->player->frame == 0)
+		datas->is_moving = 0;
+	else
 	{
 		if (datas->player->frame == 8)
 		{
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
+			datas->is_moving = 0;
+			datas->player->frame = 0;
 		}
-		ft_player_anim_south(datas->player);
+		else
+			ft_player_anim_south(datas->player);
 	}
 }
 
 static void	move_west(t_datas *datas)
 {
-	if (datas->map->blueprint[datas->player->pos_y][datas->player->pos_x - 64]
-			!= '1')
+	if (datas->map->blueprint[datas->player->pos_y / 64]
+			[(datas->player->pos_x - 64) / 64] == '1'
+			&& datas->player->frame == 0)
+		datas->is_moving = 0;
+	else
 	{
 		if (datas->player->frame == 8)
 		{
 			datas->move_count++;
 			ft_printf("\e[35mmovement count: %d\n\e[0m", datas->move_count);
+			datas->is_moving = 0;
+			datas->player->frame = 0;
 		}
-		ft_player_anim_west(datas->player);
+		else
+			ft_player_anim_west(datas->player);
 	}
 }
 

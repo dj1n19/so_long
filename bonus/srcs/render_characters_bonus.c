@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_characters_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:18:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/23 16:32:12 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/02 15:25:35 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ static void	draw_foes(t_datas *datas)
 
 	i = 0;
 	while (datas->foes[i])
-	{	
-		mlx_put_image_to_window(datas->mlx, datas->win,
-				datas->foes[i]->current,
-				datas->foes[i]->pos_x, datas->foes[i]->pos_y);
+	{
+		if (datas->foes[i]->type == 'U'){
+			mlx_put_image_to_window(datas->mlx, datas->win,
+					datas->foes[i]->current,
+					datas->foes[i]->pos_x, datas->foes[i]->pos_y);}
 		i++;
 	}
 }
@@ -29,7 +30,7 @@ static void	draw_foes(t_datas *datas)
 static void	draw_player(t_datas *datas)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win, datas->player->current,
-			datas->player->pos_x, datas->player->pos_x);
+			datas->player->pos_x, datas->player->pos_y);
 }
 
 void	ft_draw_characters(t_datas *datas)

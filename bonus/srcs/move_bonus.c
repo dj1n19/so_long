@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 16:12:24 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 02:32:39 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/02 15:27:43 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	ft_move(int keycode, t_datas *datas)
 {
+	char	next_tile;
+
+	next_tile = datas->map->blueprint[datas->player->pos_y / TILESIZE]
+		[datas->player->pos_x / TILESIZE];
 	ft_move_player(keycode, datas);
-	ft_move_foes(datas);
-	if (datas->map->blueprint[datas->player->pos_y / TILESIZE]
-			[datas->player->pos_x / TILESIZE] == 'C')
+	if (next_tile == 'C' || next_tile == 'G'
+		|| next_tile == 'K' || next_tile == 'A')
 	{
 		datas->map->blueprint[datas->player->pos_y / TILESIZE]
 			[datas->player->pos_x / TILESIZE] = '0';

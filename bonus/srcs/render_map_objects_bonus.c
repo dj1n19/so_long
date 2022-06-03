@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map_objects_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:39:40 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/23 16:17:22 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/01 16:17:17 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	draw_walls(t_datas *datas, int x, int y)
 
 void	ft_draw_map_objects(t_datas *datas)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	**bp;
 
 	bp = datas->map->blueprint;
@@ -47,7 +47,7 @@ void	ft_draw_map_objects(t_datas *datas)
 	while (y < datas->map->size_y - 1)
 	{
 		x = 1;
-		while (y < datas->map->size_x - 1)
+		while (x < datas->map->size_x - 1)
 		{
 			if (bp[y][x] == 'C' || bp[y][x] == 'G' || bp[y][x] == 'K'
 					|| bp[y][x] == 'A')

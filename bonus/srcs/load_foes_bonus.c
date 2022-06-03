@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:06:07 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/30 17:35:57 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/03 13:41:17 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ static void load_unicorn_right(t_datas *datas, t_foe *unicorn, void *mlx)
 	u[6] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_7.xpm", &x, &y);
 	u[7] = mlx_xpm_file_to_image(mlx, "../../assets/unicorn_right_8.xpm", &x, &y);
 	i = 0;
-	while ( i < 8)
+	while (i < 8)
 	{
 		if (!u[i])
 			ft_e_load(5, datas);
+		i++;
 	}
 }
 
@@ -61,6 +62,7 @@ static void	load_unicorn_left(t_datas *datas, t_foe *unicorn, void * mlx)
 	{
 		if (!u[i])
 			ft_e_load(5, datas);
+		i++;
 	}
 }
 
@@ -118,18 +120,21 @@ static void	load_dragon_left(t_datas *datas, t_foe *dragon, void *mlx)
 
 void	ft_load_foes(t_datas *datas)
 {
-	while (*datas->foes)
+	int	i;
+
+	i = 0;
+	while (datas->foes[i])
 	{
-		if ((*datas->foes)->type == 'U')
+		if (datas->foes[i]->type == 'U')
 		{
-			load_unicorn_right(datas, *datas->foes, datas->mlx);
-			load_unicorn_left(datas, *datas->foes, datas->mlx);
+			load_unicorn_right(datas, datas->foes[i], datas->mlx);
+			load_unicorn_left(datas, datas->foes[i], datas->mlx);
 		}
-		else if ((*datas->foes)->type == 'D')
+		else if (datas->foes[i]->type == 'D')
 		{
-			load_dragon_right(datas, *datas->foes, datas->mlx);
-			load_dragon_left(datas, *datas->foes, datas->mlx);			
+			load_dragon_right(datas, datas->foes[i], datas->mlx);
+			load_dragon_left(datas, datas->foes[i], datas->mlx);
 		}
-		datas->foes++;
+		i++;
 	}
 }

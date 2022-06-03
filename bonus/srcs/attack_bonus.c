@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   attack_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:02:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/25 15:02:08 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:51:36 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,19 @@ static void foe_anim_attack(t_foe *foe)
 {
     if (foe->frame == 8)
         foe->frame = 0;
-    foe->current = foe->sprites_attack[foe->frame];
+    if (foe->direction == 'R')
+        foe->current = foe->sprites_attack_right[foe->frame];
+    else if (foe->direction == 'L')
+        foe->current = foe->sprites_attack_left[foe->frame];
     foe->frame++;
+}
+
+static void player_anim_attack(t_player *player)
+{
+    if (player->frame == 8)
+        player->frame = 0;
+    player->current = player->player_attack[player->frame];
+    player->frame++;
 }
 
 static int     is_at_range(t_foe *f, t_player *p)
@@ -44,7 +55,7 @@ void    ft_player_attack(t_datas *datas)
         }
         datas->foes++;
     }
-    datas->player->current = datas->player->attack;
+    player_anim_attack(datas->player);
     if (target)
     {
         target->hp -= datas->player->damage;
@@ -62,20 +73,22 @@ void    ft_foe_attack(t_datas *datas)
     {
         if (is_at_range(datas->foes[i], datas->player))
         {
+            datas->foes[i]->is_attacking = 1;
+            if (datas->foes[i]->frame == 8)
+                datas->player->hp -= datas->foes[i]->damage;
             if (datas->foes[i]->type == 'U')
                 foe_anim_attack(datas->foes[i]);
             else if (datas->foes[i]->type == 'D')
                 foe_anim_attack(datas->foes[i]);
-            if (datas->foes[i]->frame == 8)
-                datas->player->hp -= datas->foes[i]->damage;
             if (datas->player->hp <= 0)
             {
-                mlx_string_put(datas->mlx, datas->win,
-                    datas->map->size_x / 2 * TILESIZE,
-                    datas->map->size_y / 2 * TILESIZE,
-                    0x00ff0000, "WASTED");
+                mlx_string_put(datas->mlx, datas->win, datas->map->size_x / 2
+                        * 64, datas->map->size_y / 2 * 64, 16711680, "WASTED");
                 ft_close(datas);
             }
         }
+        else
+            datas->foes[i]->is_attacking = 0;
+        i++;
     }
 }

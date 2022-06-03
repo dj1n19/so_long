@@ -22,6 +22,16 @@ static void	free_map(char **map)
 	free(*map);
 }
 
+static void free_foes(t_foe **foes)
+{
+	while(*foes)
+	{
+		free(*foes);
+		foes++;
+	}
+	free(*foes);
+}
+
 int	ft_close(t_datas *datas)
 {
 	int	exit_code;
@@ -39,8 +49,14 @@ int	ft_close(t_datas *datas)
 		free(datas->player);
 	if (datas->win)
 		mlx_destroy_window(datas->mlx, datas->win);
+	if (datas->foes)
+	{
+		free_foes(datas->foes);
+		free(datas->foes);
+	}
 	if (datas)
 		free(datas);
+	system("leaks a.out");
 	exit(exit_code);
 	return (0);
 }

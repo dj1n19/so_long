@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:25:04 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 02:38:50 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/01 13:30:11 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	load_up(t_datas *datas)
 {
-	int			i;
-	int			w;
-	int			h;
-	void		**p;
-	void		*mlx;
+	int		i;
+	int		w;
+	int		h;
+	void	**p;
+	void	*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
@@ -43,11 +43,11 @@ static void	load_up(t_datas *datas)
 
 static void	load_right(t_datas *datas)
 {
-	int	i;
-	int			w;
-	int			h;
-	void		**p;
-	void		*mlx;
+	int		i;
+	int		w;
+	int		h;
+	void	**p;
+	void	*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
@@ -72,11 +72,11 @@ static void	load_right(t_datas *datas)
 
 static void	load_down(t_datas *datas)
 {
-	int	i;
-	int			w;
-	int			h;
-	void		**p;
-	void		*mlx;
+	int		i;
+	int		w;
+	int		h;
+	void	**p;
+	void	*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;
@@ -101,11 +101,11 @@ static void	load_down(t_datas *datas)
 
 static void	load_left(t_datas *datas)
 {
-	int	i;
-	int			w;
-	int			h;
-	void		**p;
-	void		*mlx;
+	int		i;
+	int		w;
+	int		h;
+	void	**p;
+	void	*mlx;
 
 	w = TILESIZE;
 	h = TILESIZE;

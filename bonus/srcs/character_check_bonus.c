@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   character_check_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:34:18 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/23 17:49:56 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/02 15:24:56 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_check_player(t_datas *datas)
 			{
 				datas->player->pos_x = x * TILESIZE;
 				datas->player->pos_y = y * TILESIZE;
+				datas->player->current = datas->player->player_right[0];
 				return ;
 			}
 		}

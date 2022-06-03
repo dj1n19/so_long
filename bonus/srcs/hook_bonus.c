@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 15:38:38 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 02:31:40 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:21:31 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	ft_key_hook(int keycode, t_datas *datas)
 {
-	datas->keycode = keycode;
+	if (datas->is_moving == 0)
+	{
+		datas->keycode = keycode;
+		datas->is_moving = 1;
+	}
 	return (0);
 }
 
@@ -24,8 +28,13 @@ int	ft_hook(t_datas *datas)
 		ft_close(datas);
 	if (datas->keycode == LETTER_E)
 		ft_player_attack(datas);
-	else if (datas->keycode != -1)
+	else if (datas->is_moving == 1)
 		ft_move(datas->keycode, datas);
-	usleep(150000);
+	if (datas->map->frame == 8)
+		datas->map->frame = 0;
+	ft_move_foes(datas);
+	ft_draw(datas);
+	datas->map->frame++;
+	usleep(25000);
 	return (0);
 }

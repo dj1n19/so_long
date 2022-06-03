@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 02:30:05 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/02 15:25:24 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	ft_init(char *file)
 	datas = ft_init_datas(file);
 	datas->mlx = mlx_init();
 	ft_load_textures(datas);
-	ft_load_player(datas);
+	ft_check_player(datas);
+	ft_place_foes(datas);
 	datas->win = mlx_new_window(datas->mlx, datas->map->size_x * TILESIZE,
 			datas->map->size_y * TILESIZE, "so_long");
 	mlx_key_hook(datas->win, ft_key_hook, datas);

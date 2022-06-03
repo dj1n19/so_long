@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 01:46:12 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:44:22 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ int     ft_close(t_datas *datas);
 int     ft_key_hook(int keycode, t_datas *datas);
 int     ft_hook(t_datas *datas);
 t_datas *ft_init_datas(char *file);
+void    ft_load_foes_attack(t_datas *datas);
 void    ft_load_foes(t_datas *datas);
+void    ft_load_foes_death(t_datas *datas);
 void    ft_load_items(t_datas *datas);
 void    ft_load_map(char *file, t_datas *datas);
+void    ft_load_player_attack(t_datas *datas);
 void    ft_load_player(t_datas *datas);
 void    ft_load_textures(t_datas *datas);
 void    ft_check_map(t_datas *datas);

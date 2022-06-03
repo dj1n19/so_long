@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:02:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/21 02:39:38 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/03 14:05:46 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ void	ft_load_textures(t_datas *datas)
 	load_portals(datas, datas->mlx);
 	ft_load_items(datas);
 	ft_load_player(datas);
+	ft_load_player_attack(datas);
 	ft_load_foes(datas);
+	ft_load_foes_attack(datas);
+	ft_load_foes_death(datas);
 	datas->map->ground = mlx_xpm_file_to_image(datas->mlx,
 			"../../assets/grass.xpm", &width, &height);
 	datas->map->wall = mlx_xpm_file_to_image(datas->mlx, "../../assets/trees.xpm",
