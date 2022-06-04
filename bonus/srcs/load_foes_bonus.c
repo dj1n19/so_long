@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:06:07 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/03 13:41:17 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/04 16:19:33 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ static void load_dragon_right(t_datas *datas, t_foe *dragon, void *mlx)
 	d[6] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_7.xpm", &x, &y);
 	d[7] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_right_8.xpm", &x, &y);
 	i = 0;
-	/*while ( i < 8)
+	while ( i < 8)
 	{
 		if (!d[i])
 			ft_e_load(5, datas);
-	}*/
+		i++;
+	}
 }
 
 static void	load_dragon_left(t_datas *datas, t_foe *dragon, void *mlx)
@@ -111,11 +112,12 @@ static void	load_dragon_left(t_datas *datas, t_foe *dragon, void *mlx)
 	d[6] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_7.xpm", &x, &y);
 	d[7] = mlx_xpm_file_to_image(mlx, "../../assets/dragon_left_8.xpm", &x, &y);
 	i = 0;
-	/*while (i < 8)
+	while (i < 8)
 	{
 		if (!d[i])
 			ft_e_load(5, datas);
-	}*/
+		i++;
+	}
 }
 
 void	ft_load_foes(t_datas *datas)

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:18:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/02 15:25:35 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/04 16:26:43 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ static void	draw_foes(t_datas *datas)
 	i = 0;
 	while (datas->foes[i])
 	{
-		if (datas->foes[i]->type == 'U'){
-			mlx_put_image_to_window(datas->mlx, datas->win,
-					datas->foes[i]->current,
-					datas->foes[i]->pos_x, datas->foes[i]->pos_y);}
+		mlx_put_image_to_window(datas->mlx, datas->win,
+				datas->foes[i]->current,
+				datas->foes[i]->pos_x, datas->foes[i]->pos_y);
 		i++;
 	}
 }
