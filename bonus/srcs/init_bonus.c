@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:21:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/02 13:42:16 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:41:58 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ static t_player	*init_player(t_datas *datas)
 	player = (t_player *) malloc(sizeof(t_player));
 	if (!player)
 		ft_e_malloc(datas);
-	player->hp = 100;
-	player->damage = 20;
+	player->hp = 200;
+	player->damage = 30;
 	player->frame = 0;
+	player->is_attacking = 0;
+	player->is_moving = 0;
+	player->is_casting = 0;
+	player->target = NULL;
 	return (player);
 }
 
@@ -36,6 +40,7 @@ static t_foe	*init_foe(t_datas *datas, char type)
 	foe->frame = 0;
 	foe->direction = 'R';
 	foe->is_attacking = 0;
+	foe->is_dead = 0;
 	if (type == 'U')
 	{
 		foe->hp = 50;
@@ -101,6 +106,5 @@ t_datas	*ft_init_datas(char *file)
 	datas->keycode = -1;
 	datas->exit_code = 0;
 	datas->move_count = 0;
-	datas->is_moving = 0;
 	return (datas);
 }

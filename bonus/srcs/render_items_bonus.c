@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 02:45:20 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/01 16:18:59 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:18:53 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,28 @@
 static void	draw_chest(t_datas *datas, int x, int y)
 {	
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->item_chest[datas->map->frame],
+			datas->map->item_chest[datas->map->frame / 4],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_gems(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->item_gems[datas->map->frame],
+			datas->map->item_gems[datas->map->frame / 4],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_crystal(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->item_crystal[datas->map->frame],
+			datas->map->item_crystal[datas->map->frame / 4],
 			TILESIZE * x, TILESIZE * y);
 }
 
 static void	draw_gold(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win,
-			datas->map->item_gold[datas->map->frame],
+			datas->map->item_gold[datas->map->frame / 4],
 			TILESIZE * x, TILESIZE * y);
 }
 

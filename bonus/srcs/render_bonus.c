@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:34:27 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/01 17:46:43 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/15 15:47:53 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,28 @@ static void	draw_corner(t_map *map, void *mlx, void *win)
 
 int	ft_draw(t_datas *datas)
 {
+	char	*mc;
+	static int		timer;
+
 	draw_corner(datas->map, datas->mlx, datas->win);
 	draw_edges(datas->map, datas->mlx, datas->win);
 	draw_ground(datas->map, datas->mlx, datas->win);
 	ft_draw_map_objects(datas);
 	ft_draw_characters(datas);
+	mlx_put_image_to_window(datas->mlx, datas->win, datas->player->portrait, 0, 0);
+	if (datas->player->is_attacking == 1 && datas->player->target)
+		mlx_put_image_to_window(datas->mlx, datas->win, datas->player->attack[datas->player->frame],datas->player->target->pos_x, datas->player->target->pos_y);
+	if (datas->player->is_casting == 1 && datas->player->spell_target != 0)
+		{printf("==(%d, %d)\n", datas->player->pos_x, datas->player->pos_y);ft_draw_spell(datas);}
+	mc = ft_itoa(datas->move_count);
+	mlx_string_put(datas->mlx, datas->win, 64, 64, 0x0000ff00, mc);
+	free(mc);
+	if (datas->player->hp <= 0)
+	{
+		timer++;
+		mlx_string_put(datas->mlx, datas->win, 128, 128, 0x00ff0000, "WASTED");
+		if (timer > 8)
+			ft_close(datas);
+	}
 	return (0);
 }

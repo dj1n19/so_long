@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:39:40 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/01 16:17:17 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/10 17:18:58 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_exit(t_datas *datas, int x, int y)
 		else
 		{
 			mlx_put_image_to_window(datas->mlx, datas->win,
-					datas->map->exit_open[datas->map->frame],
+					datas->map->exit_open[datas->map->frame / 4],
 					TILESIZE * x, TILESIZE * y);
 		}
 	}

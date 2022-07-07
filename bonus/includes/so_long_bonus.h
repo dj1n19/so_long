@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/03 14:44:22 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:41:40 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void    ft_foe_attack(t_datas *datas);
 int     ft_check_unicorns(t_map *map);
 int     ft_check_dragons(t_map *map);
 void    ft_check_player(t_datas *datas);
+void    ft_foe_death_anim(t_foe *foe);
 void    ft_e_open(t_datas *datas);
 void    ft_e_map(int errnum, t_datas *datas);
 void    ft_e_load(int errnum, t_datas *datas);
@@ -55,5 +56,7 @@ int     ft_draw(t_datas *datas);
 void    ft_draw_characters(t_datas *datas);
 void    ft_draw_items(t_datas *datas, char item, int x, int y);
 void    ft_draw_map_objects(t_datas *datas);
+void    ft_draw_spell(t_datas *datas);
+void    ft_spell_cast(t_datas *datas);
 
 #endif

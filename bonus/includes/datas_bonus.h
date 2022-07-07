@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:15:20 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/03 14:31:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/10 16:06:08 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,25 @@ typedef struct	s_map
 
 typedef struct	s_player
 {
-	int		pos_x;
-	int		pos_y;
-	int		hp;
-	int		frame;
-	int		damage;
-	void	*player_up[8];
-	void	*player_right[8];
-	void	*player_down[8];
-	void	*player_left[8];
-	void	*player_attack[8];
-	void	*attack[8];
-	void	*spell[8];
-	void	*current;
+	int				pos_x;
+	int				pos_y;
+	int				hp;
+	int				frame;
+	int				damage;
+	int				is_attacking;
+	int				is_moving;
+	int				is_casting;
+	int				spell_target;
+	void			*portrait;
+	void			*player_up[8];
+	void			*player_right[8];
+	void			*player_down[8];
+	void			*player_left[8];
+	void			*player_attack[8];
+	void			*attack[8];
+	void			*spell[8];
+	void			*current;
+	struct s_foe	*target;
 }				t_player;
 
 typedef struct	s_foe
@@ -59,6 +65,7 @@ typedef struct	s_foe
 	int		frame;
 	int		damage;
 	int		is_attacking;
+	int		is_dead;
 	char	direction;
 	char	type;	
 	void	*sprites_right[8];
@@ -78,7 +85,6 @@ typedef struct	s_datas
 	int					keycode;
 	int					collected;
 	int					exit_code;
-	int					is_moving;
 	struct s_map		*map;
 	struct s_player		*player;
 	struct s_foe		**foes;

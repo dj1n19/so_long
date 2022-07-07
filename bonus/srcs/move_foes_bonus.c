@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:46:54 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/02 13:43:18 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/06/09 16:23:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,11 @@ void    ft_move_foes(t_datas *datas)
     while (datas->foes[i])
     {
         foe = datas->foes[i];
-        if (foe->direction == 'R' && foe->is_attacking == 0)
+        if (foe->is_dead == 1)
+            ft_foe_death_anim(foe);
+        if (foe->direction == 'R' && foe->is_attacking == 0 && foe->is_dead == 0)
             move_foe_right(datas->map, foe);
-        else if (foe->direction == 'L' && foe->is_attacking == 0)
+        else if (foe->direction == 'L' && foe->is_attacking == 0 && foe->is_dead == 0)
             move_foe_left(datas->map, foe);
         ++i;
     }

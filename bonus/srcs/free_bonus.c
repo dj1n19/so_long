@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
+#include "../includes/leaks.h"
 
 static void	free_map(char **map)
 {
@@ -56,7 +57,7 @@ int	ft_close(t_datas *datas)
 	}
 	if (datas)
 		free(datas);
-	system("leaks a.out");
+	check_leaks();
 	exit(exit_code);
 	return (0);
 }
