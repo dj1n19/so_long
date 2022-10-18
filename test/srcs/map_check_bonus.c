@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:14:09 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/23 17:43:22 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/07 19:06:23 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,5 @@ void	ft_check_map(t_datas *datas)
 		ft_e_map(4, datas);
 	if (!ft_check_start(datas->map->blueprint))
 		ft_e_map(5, datas);
-	datas->collected = items;
+	datas->remaining_items = items;
 }

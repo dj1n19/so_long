@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:21:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/05 14:47:39 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/07 18:37:35 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_player	*init_player(t_datas *datas)
 	player = (t_player *) malloc(sizeof(t_player));
 	if (!player)
 		ft_e_malloc(datas);
-	player->hp = 200;
-	player->damage = 30;
+	player->hp = 300;
+	player->damage = 50;
 	player->frame = 0;
 	player->is_attacking = 0;
 	player->is_moving = 0;
@@ -44,13 +44,13 @@ static t_foe	*init_foe(t_datas *datas, char type)
 	foe->is_dead = 0;
 	if (type == 'U')
 	{
-		foe->hp = 50;
-		foe->damage = 5;
+		foe->hp = 100;
+		foe->damage = 10;
 	}
 	else if (type == 'D')
 	{
-		foe->hp = 100;
-		foe->damage = 20;
+		foe->hp = 200;
+		foe->damage = 15;
 	}
 	return (foe);
 }
@@ -66,7 +66,7 @@ static void	init_foes(t_datas *datas)
 	unicorns_nbr = ft_check_unicorns(datas->map);
 	dragons_nbr = ft_check_dragons(datas->map);
 	foes_nbr = unicorns_nbr + dragons_nbr;
-	datas->foes = (t_foe **) malloc(sizeof(t_foe *) * foes_nbr + 1);
+	datas->foes = (t_foe **) malloc(sizeof(t_foe *) * (foes_nbr + 1));
 	if (!datas->foes)
 		ft_e_malloc(datas);
 	while (i < unicorns_nbr)

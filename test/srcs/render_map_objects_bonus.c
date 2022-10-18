@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 14:39:40 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/04 16:42:13 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 14:53:20 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	draw_exit(t_datas *datas, int x, int y)
 		if (datas->map->portal_open == 0)
 		{
 			mlx_put_image_to_window(datas->mlx, datas->win,
-					datas->map->exit_close, TILESIZE * x, TILESIZE * y);
+				datas->map->exit_close, TILESIZE * x, TILESIZE * y);
 		}
 		else
 		{
 			mlx_put_image_to_window(datas->mlx, datas->win,
-					datas->map->exit_open[datas->map->frame],
-					TILESIZE * x, TILESIZE * y);
+				datas->map->exit_open[datas->map->frame],
+				TILESIZE * x, TILESIZE * y);
 		}
 	}
 }
@@ -33,7 +33,7 @@ static void	draw_exit(t_datas *datas, int x, int y)
 static void	draw_walls(t_datas *datas, int x, int y)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win, datas->map->wall,
-			TILESIZE * x, TILESIZE * y);
+		TILESIZE * x, TILESIZE * y);
 }
 
 void	ft_draw_map_objects(t_datas *datas)

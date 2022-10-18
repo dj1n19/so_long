@@ -6,15 +6,15 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:55:22 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/03 14:45:39 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 15:06:38 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-static void load_player_anim_attack(t_datas *datas, void *mlx)
+static void	load_player_anim_attack(t_datas *datas, void *mlx)
 {
-    int		i;
+	int		i;
 	int		w;
 	int		h;
 	void	**p;
@@ -39,9 +39,9 @@ static void load_player_anim_attack(t_datas *datas, void *mlx)
 	}
 }
 
-static void load_player_attack(t_datas *datas, void *mlx)
+static void	load_player_attack(t_datas *datas, void *mlx)
 {
-    int		i;
+	int		i;
 	int		w;
 	int		h;
 	void	**p;
@@ -66,9 +66,9 @@ static void load_player_attack(t_datas *datas, void *mlx)
 	}
 }
 
-static void load_player_spell(t_datas *datas, void *mlx)
+static void	load_player_spell(t_datas *datas, void *mlx)
 {
-    int		i;
+	int		i;
 	int		w;
 	int		h;
 	void	**p;
@@ -93,9 +93,9 @@ static void load_player_spell(t_datas *datas, void *mlx)
 	}
 }
 
-void    ft_load_player_attack(t_datas *datas)
+void	ft_load_player_attack(t_datas *datas)
 {
-    load_player_anim_attack(datas, datas->mlx);
-    load_player_attack(datas, datas->mlx);
-    load_player_spell(datas, datas->mlx);
+	load_player_anim_attack(datas, datas->mlx);
+	load_player_attack(datas, datas->mlx);
+	load_player_spell(datas, datas->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/07 15:24:23 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/07/09 16:24:15 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void    ft_draw_items(t_datas *datas, char item, int x, int y);
 void    ft_draw_map_objects(t_datas *datas);
 void    ft_draw_spell(t_datas *datas);
 void    ft_spell_cast(t_datas *datas);
+
+int ft_key_up(int keycode, t_datas *datas);
+int ft_key_down(int keycode, t_datas *datas);
 
 #endif

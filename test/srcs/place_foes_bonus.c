@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 18:44:35 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/02 15:25:14 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 14:58:44 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void    ft_place_foes(t_datas *datas)
     int i;
 
     i = 0;
-    x = 1;
     y = 1;
     while (y < datas->map->size_y - 1)
     {

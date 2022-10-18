@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:18:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/09 16:26:54 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 14:51:23 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	draw_foes(t_datas *datas)
 static void	draw_player(t_datas *datas)
 {
 	mlx_put_image_to_window(datas->mlx, datas->win, datas->player->current,
-			datas->player->pos_x, datas->player->pos_y);
+		datas->player->pos_x, datas->player->pos_y);
 }
 
 void	ft_draw_characters(t_datas *datas)

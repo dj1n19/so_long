@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:46:54 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/04 17:00:25 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/07/09 16:04:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,23 @@ void    ft_move_foes(t_datas *datas)
     t_foe   *foe;
     int     i;
 
-	datas->ft_running = 1;
-    i = 0;
-    ft_foe_attack(datas);
-    while (datas->foes[i])
-    {
-        foe = datas->foes[i];
-        if (foe->is_dead == 1)
-            ft_foe_death_anim(foe);
-        if (foe->direction == 'R' && foe->is_attacking == 0 && foe->is_dead == 0)
-            move_foe_right(datas->map, foe);
-        else if (foe->direction == 'L' && foe->is_attacking == 0 && foe->is_dead == 0)
-            move_foe_left(datas->map, foe);
-        ++i;
-    }
-	usleep(50000);
-	datas->ft_running = 0;
-	pthread_exit(0);
+	//datas->ft_running = 1;
+    while (datas->ft_running == 0){
+		i = 0;
+    	ft_foe_attack(datas);
+    	while (datas->foes[i])
+    	{
+        	foe = datas->foes[i];
+        	if (foe->is_dead == 1)
+            	ft_foe_death_anim(foe);
+        	if (foe->direction == 'R' && foe->is_attacking == 0 && foe->is_dead == 0)
+            	move_foe_right(datas->map, foe);
+        	else if (foe->direction == 'L' && foe->is_attacking == 0 && foe->is_dead == 0)
+            	move_foe_left(datas->map, foe);
+        	++i;
+    	}
+		usleep(50000);
+	}
+	//datas->ft_running = 0;
+	//pthread_exit(0);
 }

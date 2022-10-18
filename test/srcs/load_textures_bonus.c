@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:02:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/03 14:05:46 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 15:00:19 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	load_portals(t_datas *datas, void *mlx)
 	h = TILESIZE;
 	e = datas->map->exit_open;
 	datas->map->exit_close = mlx_xpm_file_to_image(mlx,
-		"../../assets/portal_close.xpm", &w, &h);
+			"../../assets/portal_close.xpm", &w, &h);
 	e[0] = mlx_xpm_file_to_image(mlx, "../../assets/portal_open_1.xpm", &w, &h);
 	e[1] = mlx_xpm_file_to_image(mlx, "../../assets/portal_open_2.xpm", &w, &h);
 	e[2] = mlx_xpm_file_to_image(mlx, "../../assets/portal_open_3.xpm", &w, &h);
@@ -113,7 +113,8 @@ void	ft_load_textures(t_datas *datas)
 	ft_load_foes_death(datas);
 	datas->map->ground = mlx_xpm_file_to_image(datas->mlx,
 			"../../assets/grass.xpm", &width, &height);
-	datas->map->wall = mlx_xpm_file_to_image(datas->mlx, "../../assets/trees.xpm",
+	datas->map->wall = mlx_xpm_file_to_image(datas->mlx,
+			"../../assets/trees.xpm",
 			&width, &height);
 	if (!datas->map->wall || !datas->map->ground)
 	{

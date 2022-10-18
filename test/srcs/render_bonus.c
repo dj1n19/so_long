@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:34:27 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/05 14:55:29 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 14:50:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,18 @@ int	ft_draw(t_datas *datas)
 	draw_ground(datas->map, datas->mlx, datas->win);
 	ft_draw_map_objects(datas);
 	ft_draw_characters(datas);
-	mlx_put_image_to_window(datas->mlx, datas->win, datas->player->portrait, 0, 0);
+	mlx_put_image_to_window(datas->mlx, datas->win,
+		datas->player->portrait, 0, 0);
 	if (datas->player->is_attacking == 1 && datas->player->target)
-		mlx_put_image_to_window(datas->mlx, datas->win, datas->player->attack[datas->player->frame],datas->player->target->pos_x, datas->player->target->pos_y);
+		mlx_put_image_to_window(datas->mlx, datas->win,
+			datas->player->attack[datas->player->frame],
+			datas->player->target->pos_x, datas->player->target->pos_y);
 	if (datas->player->is_casting == 1 && datas->player->spell_target != 0)
 		ft_draw_spell(datas);
 	hp = ft_itoa(datas->player->hp);
 	mlx_string_put(datas->mlx, datas->win, 64, 64, 0x0000ff00, hp);
 	free(hp);
 	if (datas->player->hp <= 0)
-			ft_close(datas);
+		ft_close(datas);
 	return (0);
 }

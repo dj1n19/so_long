@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:25:04 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/07 17:49:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 15:03:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ static void	load_right(t_datas *datas)
 	int		w;
 	int		h;
 	void	**p;
-	void	*mlx;
+	void	*m;
 
 	w = TILESIZE;
 	h = TILESIZE;
 	p = datas->player->player_right;
-	mlx = datas->mlx;
+	m = datas->mlx;
 	i = 0;
-	p[0] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_1.xpm", &w, &h);
-	p[1] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_2.xpm", &w, &h);
-	p[2] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_3.xpm", &w, &h);
-	p[3] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_4.xpm", &w, &h);
-	p[4] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_5.xpm", &w, &h);
-	p[5] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_6.xpm", &w, &h);
-	p[6] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_7.xpm", &w, &h);
-	p[7] = mlx_xpm_file_to_image(mlx, "../../assets/player_right_8.xpm", &w, &h);
+	p[0] = mlx_xpm_file_to_image(m, "../../assets/player_right_1.xpm", &w, &h);
+	p[1] = mlx_xpm_file_to_image(m, "../../assets/player_right_2.xpm", &w, &h);
+	p[2] = mlx_xpm_file_to_image(m, "../../assets/player_right_3.xpm", &w, &h);
+	p[3] = mlx_xpm_file_to_image(m, "../../assets/player_right_4.xpm", &w, &h);
+	p[4] = mlx_xpm_file_to_image(m, "../../assets/player_right_5.xpm", &w, &h);
+	p[5] = mlx_xpm_file_to_image(m, "../../assets/player_right_6.xpm", &w, &h);
+	p[6] = mlx_xpm_file_to_image(m, "../../assets/player_right_7.xpm", &w, &h);
+	p[7] = mlx_xpm_file_to_image(m, "../../assets/player_right_8.xpm", &w, &h);
 	while (i < 8)
 	{
 		if (!p[i])
@@ -136,7 +136,7 @@ void	ft_load_player(t_datas *datas)
 	w = 45;
 	h = 45;
 	datas->player->portrait = mlx_xpm_file_to_image(datas->mlx,
-		"../../assets/portrait.xpm", &w, &h);
+			"../../assets/portrait.xpm", &w, &h);
 	load_left(datas);
 	load_right(datas);
 	load_up(datas);

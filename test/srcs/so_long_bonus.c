@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/07 15:37:09 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/04 18:10:51 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ static int	check_args(char *arg)
 	return (0);
 }
 
+static void test_item_anim(t_datas *datas)
+{
+	while (datas->it_running == 0)
+	{
+		datas->map->frame++;
+		if (datas->map->frame > 7)
+			datas->map->frame = 0;
+		usleep(200000);
+	}
+}
+
 static void	ft_init(char *file)
 {
 	t_datas		*datas;
@@ -31,11 +42,13 @@ static void	ft_init(char *file)
 
 	datas = ft_init_datas(file);
 	datas->mlx = mlx_init();
+	printf("INIT MLX:[%p]\n", datas->mlx);
 	ft_load_textures(datas);
 	ft_check_player(datas);
 	ft_place_foes(datas);
 	datas->win = mlx_new_window(datas->mlx, datas->map->size_x * TILESIZE,
 			datas->map->size_y * TILESIZE, "so_long");
+	printf("INIT WIN:[%p]\n",datas->win);
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 	datas->attr = &attr;
@@ -46,8 +59,12 @@ static void	ft_init(char *file)
 	datas->pt_running = 0;
 	datas->ft_running = 0;
 	datas->it_running = 0;
+	datas->mt_running = 0;
+	pthread_create(datas->item_thread, datas->attr, test_item_anim, datas);
+	pthread_create(datas->foe_thread, datas->attr, ft_move_foes, datas);
 	//mlx_key_hook(datas->win, ft_key_hook, datas);
-	mlx_hook(datas->win, 2, 1L<<0, ft_key_hook, datas);
+	mlx_hook(datas->win, 2, 1L<<0, ft_key_down, datas);
+	mlx_hook(datas->win, 3, 1L<<1, ft_key_up, datas);
 	mlx_hook(datas->win, 17, 0, ft_close, datas);
 	mlx_loop_hook(datas->mlx, ft_hook, datas);
 	mlx_loop(datas->mlx);

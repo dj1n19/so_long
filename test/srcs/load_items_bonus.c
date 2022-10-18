@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_items_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:47:56 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/20 19:04:48 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/02 15:09:38 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	load_gems(t_datas *datas, void *mlx)
 	w = TILESIZE;
 	h = TILESIZE;
 	m = datas->map->item_gems;
-
 	m[0] = mlx_xpm_file_to_image(mlx, "../../assets/gems_1.xpm", &w, &h);
 	m[1] = mlx_xpm_file_to_image(mlx, "../../assets/gems_2.xpm", &w, &h);
 	m[2] = mlx_xpm_file_to_image(mlx, "../../assets/gems_3.xpm", &w, &h);
@@ -94,7 +93,7 @@ static void	load_crystal(t_datas *datas, void *mlx)
 	}
 }
 
-static void load_gold(t_datas *datas, void *mlx)
+static void	load_gold(t_datas *datas, void *mlx)
 {
 	int		i;
 	int		w;
@@ -104,22 +103,14 @@ static void load_gold(t_datas *datas, void *mlx)
 	w = TILESIZE;
 	h = TILESIZE;
 	m = datas->map->item_gold;
-	m[0] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_1.xpm", &w, &h);
-	m[1] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_2.xpm", &w, &h);
-	m[2] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_3.xpm", &w, &h);
-	m[3] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_4.xpm", &w, &h);
-	m[4] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_5.xpm", &w, &h);
-	m[5] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_6.xpm", &w, &h);
-	m[6] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_7.xpm", &w, &h);
-	m[7] = mlx_xpm_file_to_image(mlx,
-			"../../assets/gold_8.xpm", &w, &h);
+	m[0] = mlx_xpm_file_to_image(mlx, "../../assets/gold_1.xpm", &w, &h);
+	m[1] = mlx_xpm_file_to_image(mlx, "../../assets/gold_2.xpm", &w, &h);
+	m[2] = mlx_xpm_file_to_image(mlx, "../../assets/gold_3.xpm", &w, &h);
+	m[3] = mlx_xpm_file_to_image(mlx, "../../assets/gold_4.xpm", &w, &h);
+	m[4] = mlx_xpm_file_to_image(mlx, "../../assets/gold_5.xpm", &w, &h);
+	m[5] = mlx_xpm_file_to_image(mlx, "../../assets/gold_6.xpm", &w, &h);
+	m[6] = mlx_xpm_file_to_image(mlx, "../../assets/gold_7.xpm", &w, &h);
+	m[7] = mlx_xpm_file_to_image(mlx, "../../assets/gold_8.xpm", &w, &h);
 	i = 0;
 	while (i < 8)
 	{

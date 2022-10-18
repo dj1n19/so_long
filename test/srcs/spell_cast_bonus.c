@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:33:31 by bgenie            #+#    #+#             */
-/*   Updated: 2022/07/07 16:41:16 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/08/07 17:59:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,38 +55,47 @@ void    ft_draw_spell(t_datas *datas)
 	printf("spell:[%p] %d\n", datas->player->spell[datas->player->frame], datas->player->frame);
 }
 
+static void	delete_wall(t_datas *datas)
+{
+	if (datas->player->spell_target == 'U')
+		datas->map->blueprint[(datas->player->pos_y - 64) / 64][datas->player->pos_x / 64] = '0';
+	else if (datas->player->spell_target == 'D')
+		datas->map->blueprint[(datas->player->pos_y + 64) / 64][datas->player->pos_x / 64] = '0';
+	else if (datas->player->spell_target == 'L')
+		datas->map->blueprint[datas->player->pos_y / 64][(datas->player->pos_x - 64) / 64] = '0';
+	else if (datas->player->spell_target == 'R')
+		datas->map->blueprint[datas->player->pos_y / 64][(datas->player->pos_x + 64) / 64] = '0';
+}
+
 void    ft_spell_cast(t_datas *datas)
 {
-	datas->player->is_casting = 1;
-    if (datas->player->spell_target == 0)
-    {
-        datas->player->spell_target = is_front_wall(datas->player, datas->map);
-        printf(">>>%c\n", datas->player->spell_target);
-        if (datas->player->spell_target == 0)
+    while (1)
+	{
+		datas->player->is_casting = 1;
+		if (datas->player->spell_target == 0)
+	    {
+	        datas->player->spell_target = is_front_wall(datas->player, datas->map);
+	        if (datas->player->spell_target == 0)
+			{
+				datas->player->is_casting = 0;
+				datas->pt_running = 0;
+	            return ;
+			}
+		}
+		while (datas->player->is_casting == 1 && datas->player->frame < 8)
 		{
-			datas->player->is_casting = 0;
-			datas->pt_running = 0;
-            return ;
+			spell_anim(datas->player);
+			if (datas->player->frame == 7)
+			{
+	    		delete_wall(datas);
+				datas->player->spell_target = 0;
+				datas->player->is_casting = 0;
+				datas->player->frame = 0;
+				datas->pt_running = 0;
+				printf("THREAD PT: cancel\n");
+				pthread_cancel(*datas->player_thread);
+			}
+			usleep(100000);
 		}
 	}
-	while (datas->player->is_casting == 1 && datas->player->frame < 8)
-	{
-		if (datas->player->frame == 7)
-    	{
-        	if (datas->player->spell_target == 'U')
-            	datas->map->blueprint[(datas->player->pos_y - 64) / 64][datas->player->pos_x / 64] = '0';
-        	else if (datas->player->spell_target == 'D')
-            	datas->map->blueprint[(datas->player->pos_y + 64) / 64][datas->player->pos_x / 64] = '0';
-        	else if (datas->player->spell_target == 'L')
-            	datas->map->blueprint[datas->player->pos_y / 64][(datas->player->pos_x - 64) / 64] = '0';
-        	else if (datas->player->spell_target == 'R')
-            	datas->map->blueprint[datas->player->pos_y / 64][(datas->player->pos_x + 64) / 64] = '0';
-    	}
-    	spell_anim(datas->player);
-		usleep(100000);
-	}
-	datas->player->spell_target = 0;
-	datas->player->is_casting = 0;
-	datas->player->frame = 0;
-	datas->pt_running = 0;
 }
