@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:10:39 by bgenie            #+#    #+#             */
-/*   Updated: 2022/09/11 15:18:53 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/31 14:56:10 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,10 @@ static int	is_map_rect(char **map)
 	size = ft_strlen(*map);
 	while (*map)
 	{
-		//printf(">>%s\n", *map);
-		if (size != ft_strlen(*map))
+		if ((size_t)size != ft_strlen(*map))
 			return (0);
 		++map;
 	}
-	//ft_printf("GNAH?\n");
 	return (1);
 }
 
@@ -66,24 +64,21 @@ t_map	*load_map(char *file, t_map *map_datas)
 	int		i;
 
 	get_map_size(file, map_datas);
-	//ft_printf("X:%d, Y:%d\n", map_datas->x, map_datas->y);
 	map = (char **) malloc(sizeof(char *) * (map_datas->y + 1));
 	if (!map)
-		return (NULL); // TODO ERROR 
+		error_handler(E_MALLOC);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (NULL); // TODO ERROR
+		error_handler(NULL);
 	i = 0;
-	printf("[[%p]]\n", map);
 	while (i < map_datas->y)
 	{
 		map[i] = get_next_line(fd);
-		printf("[%p]:%03d:%s", map[i], ft_strlen(map[i]), map[i]);
 		++i;
 	}
 	map[i] = NULL;
 	if (is_map_rect(map) == 0)
-		exit(EXIT_FAILURE); // TODO ERROR
+		error_handler(E_MAP);
 	map_datas->map = map;
 	return (map_datas);
 }

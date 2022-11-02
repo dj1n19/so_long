@@ -6,13 +6,13 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:43:53 by bgenie            #+#    #+#             */
-/*   Updated: 2022/09/12 19:37:50 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 11:52:48 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-static void	move_north(t_player *player, t_textures *textures,t_map *map)
+static void	move_north(t_player *player, t_textures *textures, t_map *map)
 {
 	int	px;
 	int	py;
@@ -92,7 +92,7 @@ static void	move_west(t_player *player, t_textures *textures, t_map *map)
 	}
 }
 
-static void loot_item(t_datas *datas)
+static void	loot_item(t_datas *datas)
 {
 	char		**map;
 	int			x;
@@ -111,12 +111,12 @@ static void loot_item(t_datas *datas)
 	}
 }
 
-void    move_player(t_datas *datas)
+void	move_player(t_datas *datas)
 {
-    while (1)
+	while (1)
 	{
 		if (datas->keycode == NORTH)
-			move_north(datas->player, datas->textures,datas->map);
+			move_north(datas->player, datas->textures, datas->map);
 		else if (datas->keycode == EAST)
 			move_east(datas->player, datas->textures, datas->map);
 		else if (datas->keycode == SOUTH)
@@ -124,7 +124,10 @@ void    move_player(t_datas *datas)
 		else if (datas->keycode == WEST)
 			move_west(datas->player, datas->textures, datas->map);
 		if (datas->player->frame > 7)
+		{
+			datas->player->move_count++;
 			datas->player->frame = 0;
+		}
 		loot_item(datas);
 		if (datas->map->map[(datas->player->y + 32) / 64]
 			[(datas->player->x + 32) / 64] == 'E'

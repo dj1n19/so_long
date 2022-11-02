@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:34:18 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/18 17:17:30 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:00:47 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ void	ft_check_player(t_datas *datas)
 	int	x;
 	int	y;
 
-	y = 1;
-	while (y < datas->map->y - 1)
+	y = 0;
+	while (++y < datas->map->y - 1)
 	{
-		x = 1;
-		while (x < datas->map->x - 1)
+		x = 0;
+		while (++x < datas->map->x - 1)
 		{
 			if (datas->map->map[y][x] == 'P')
 			{
@@ -76,11 +76,9 @@ void	ft_check_player(t_datas *datas)
 					datas->player->current = datas->textures->player_right[0];
 				}
 				else
-					datas->map->map[y][x] == '0';
+					datas->map->map[y][x] = '0';
 			}
-			++x;
 		}
-		++y;
 	}
 	if (!datas->player->current)
 		exit(EXIT_FAILURE);

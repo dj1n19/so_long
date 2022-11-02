@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:02:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/18 17:13:55 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 10:49:41 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	load_edges(void *mlx, void *map_edges[8])
 	{
 		if (!map_edges[i])
 		{
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_OBJ);
 		}
 		++i;
 	}
@@ -62,7 +62,7 @@ static void	*load_portals(void *mlx, void *portal_open[8], void *portal_close)
 	while (i < 8)
 	{
 		if (!portal_open[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_OBJ);
 		i++;
 	}
 	return (portal_close);
@@ -79,8 +79,7 @@ void	load_textures(t_datas *datas)
 	h = TILESIZE;
 	load_edges(datas->mlx, datas->textures->map_edges);
 	datas->textures->portal_close = load_portals(datas->mlx,
-		datas->textures->portal_open, datas->textures->portal_close);
-	ft_printf("[%p]\n", datas->textures->portal_open[0]);
+			datas->textures->portal_open, datas->textures->portal_close);
 	load_items(datas);
 	load_player(datas);
 	load_player_attack(datas);
@@ -90,5 +89,5 @@ void	load_textures(t_datas *datas)
 	datas->textures->ground = mlx_xpm_file_to_image(datas->mlx, GRND, &w, &h);
 	datas->textures->wall = mlx_xpm_file_to_image(datas->mlx, WALL, &w, &h);
 	if (!datas->textures->wall || !datas->textures->ground)
-		exit(EXIT_FAILURE); // TODO ERROR
+		error_handler(E_TEX_OBJ);
 }

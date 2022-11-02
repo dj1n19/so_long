@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:02:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/06/16 15:24:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 10:49:04 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void    ft_player_attack(t_datas *datas)
 {
     int i;
     i = 0;
-    printf(">> %p <<\n", datas->foes[0]);
     while (datas->foes[i])
     {
         if (is_at_range(datas->foes[i], datas->player))
@@ -64,12 +63,9 @@ void    ft_player_attack(t_datas *datas)
             datas->player->target = NULL;
         i++;
     }
-    printf("[%p]\n", datas->player->target);
-    printf("<< %p >>\n", datas->foes[0]);
     if (datas->player->target && datas->player->frame == 8)
     {
         datas->player->target->hp -= datas->player->damage;
-        printf("\e[31mHP = %d\e[0m\n", datas->player->target->hp);
         if (datas->player->target->hp <= 0)
         {
             datas->player->target->is_dead = 1;

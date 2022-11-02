@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 15:54:54 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/18 16:46:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 11:51:25 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct  s_player
     int     hp;
     int     frame;
     int     dmg;
+    int     move_count;
     char    dir;
     int     is_attacking;
     char    spell_target;

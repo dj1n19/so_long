@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:55:22 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/15 15:41:46 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:42:51 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	load_player_anim_attack(void *mlx, void *player_attack[8])
 	while (i < 8)
 	{
 		if (!player_attack[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static void	load_player_sfx(void *mlx, void *player_sfx[8])
 	while (i < 8)
 	{
 		if (!player_sfx[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
@@ -82,7 +82,7 @@ static void	load_player_spell(void *mlx, void *player_spell[8])
 	while (i < 8)
 	{
 		if (!player_spell[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }

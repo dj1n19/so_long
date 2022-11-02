@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:18:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/15 17:20:01 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/28 14:23:30 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static void	draw_foes(t_img *img, t_foe **foes)
 
 	i = 0;
 	while (foes[i])
-	{
-		
+	{	
 		write_to_img(img, foes[i]->current, foes[i]->x, foes[i]->y);
 		i++;
 	}

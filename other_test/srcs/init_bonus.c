@@ -6,13 +6,13 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:21:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/20 15:50:36 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:29:14 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
 
-static t_player	*init_player(t_datas *datas)
+static t_player	*init_player(void)
 {
 	t_player	*player;
 
@@ -22,13 +22,14 @@ static t_player	*init_player(t_datas *datas)
 	player->hp = 300;
 	player->dmg = 50;
 	player->frame = 0;
+	player->move_count = 0;
 	player->dir = 'R';
 	player->target = NULL;
 	player->current = NULL;
 	return (player);
 }
 
-static t_foe	*init_foe(t_datas *datas, char type)
+static t_foe	*init_foe(char type)
 {
 	t_foe	*foe;
 
@@ -69,9 +70,9 @@ static void	init_foes(t_datas *datas)
 	if (!datas->foes)
 		exit(EXIT_FAILURE);
 	while (i < unicorns_nbr)
-		datas->foes[i++] = init_foe(datas, 'U');
+		datas->foes[i++] = init_foe('U');
 	while (i < foes_nbr)
-		datas->foes[i++] = init_foe(datas, 'D');
+		datas->foes[i++] = init_foe('D');
 	datas->foes[i] = NULL;
 }
 
@@ -85,30 +86,52 @@ static void	init_map(t_datas *datas, char *file)
 	map->is_portal_open = 0;
 	map->frame = 0;
 	map = load_map(file, map);
-	//ft_printf("%d,%d\n", map->x, map->y);
-	map_check(map, &datas->items);
+	if (!map_check(map, &datas->items))
+		error_handler(E_MAP);
 	datas->map = map;
+}
+
+static t_datas	*init_threads(t_datas *datas)
+{
+	pthread_t		*move_thread;
+	pthread_t		*foe_thread;
+	pthread_t		*item_thread;
+	pthread_t		*player_thread;
+	pthread_attr_t	*attr;
+
+	move_thread = malloc(sizeof(pthread_t));
+	foe_thread = malloc(sizeof(pthread_t));
+	item_thread = malloc(sizeof(pthread_t));
+	player_thread = malloc(sizeof(pthread_t));
+	attr = malloc(sizeof(pthread_attr_t));
+	if (!attr || !move_thread || !foe_thread || !item_thread || !player_thread)
+		error_handler(E_MALLOC);
+	pthread_attr_init(attr);
+	pthread_attr_setdetachstate(attr, PTHREAD_CREATE_DETACHED);
+	datas->move_thread = move_thread;
+	datas->foe_thread = foe_thread;
+	datas->item_thread = item_thread;
+	datas->player_thread = player_thread;
+	datas->attr = attr;
+	return (datas);
 }
 
 t_datas	*ft_init_datas(char *file)
 {
 	t_datas		*datas;
-	t_player	*player;
-	t_map		*map;
 
 	datas = (t_datas *) malloc(sizeof(t_datas));
 	if (!datas)
 		exit(EXIT_FAILURE);
 	datas->mlx = NULL;
 	datas->win = NULL;
-	datas->player = init_player(datas);
+	datas->player = init_player();
 	init_map(datas, file);
 	init_foes(datas);
+	datas = init_threads(datas);
 	datas->textures = (t_textures *) malloc(sizeof(t_textures));
 	if (!datas->textures)
 		exit(EXIT_FAILURE);
 	datas->keycode = -1;
-	//datas->exit_code = 0;
-	//datas->move_count = 0;
 	return (datas);
 }

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:12:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/17 17:26:34 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:16:31 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	free_map(char **map)
 	free(*map);
 }
 
-static void free_foes(t_foe **foes)
+static void	free_foes(t_foe **foes)
 {
-	while(*foes)
+	while (*foes)
 	{
 		free(*foes);
 		foes++;
@@ -32,15 +32,17 @@ static void free_foes(t_foe **foes)
 	free(*foes);
 }
 
-
 int	ft_close(t_datas *datas)
 {
-	exit(EXIT_SUCCESS);
+	pthread_cancel(*datas->move_thread);
 	pthread_cancel(*datas->player_thread);
 	pthread_cancel(*datas->foe_thread);
 	pthread_cancel(*datas->item_thread);
 	if (datas->win)
 		mlx_destroy_window(datas->mlx, datas->win);
+	// if (datas->img)
+	// 	mlx_destroy_image(datas->mlx, datas->img->img);
+	mlx_destroy_image(datas->mlx, datas->textures->ground);
 	if (datas->map->map)
 		free_map(datas->map->map);
 	if (datas->map->map)
@@ -49,14 +51,22 @@ int	ft_close(t_datas *datas)
 		free(datas->map);
 	if (datas->player)
 		free(datas->player);
-	printf("\e[35mGNAH\n\e[0m");
+	free(datas->move_thread);
+	free(datas->player_thread);
+	free(datas->foe_thread);
+	free(datas->item_thread);
+	free(datas->attr);
 	if (datas->foes)
 	{
 		free_foes(datas->foes);
 		free(datas->foes);
 	}
+	if (datas->textures)
+		free(datas->textures);
 	if (datas)
 		free(datas);
+	//check_leaks();
+	//system("leaks a.out");
 	exit(0);
 	return (0);
 }

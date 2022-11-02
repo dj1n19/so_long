@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:14:09 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/20 15:51:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 10:50:00 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	check_items(t_map *map, int *items)
 
 	y = 1;
 	item_count = 0;
-	//ft_printf("x:%d, y:%d\n", map->x, map->y);
 	while (y < map->y - 1)
 	{
 		x = 1;
@@ -53,13 +52,11 @@ static int	check_items(t_map *map, int *items)
 			if (map->map[y][x] == 'C' || map->map[y][x] == 'G'
 					|| map->map[y][x] == 'K' || map->map[y][x] == 'A')
 				item_count++;
-			//ft_printf(">> %d <<\n", item_count);
 			x++;
 		}
 		y++;
 	}
 	*items = item_count;
-	//ft_printf("INIT ITEMS: %d\n", item_count);
 	return (item_count);
 }
 
@@ -118,7 +115,6 @@ int	map_check(t_map *map, int *items)
 		x = 0;
 		while (x < map->x)
 		{
-			//ft_printf("\e[35m%c ", map->map[y][x]);
 			if (map->map[y][x] != '0' && map->map[y][x] != '1'
 				&& map->map[y][x] != 'P' && map->map[y][x] != 'E'
 				&& map->map[y][x] != 'C' && map->map[y][x] != 'K'
@@ -128,11 +124,8 @@ int	map_check(t_map *map, int *items)
 				return (0);
 			++x;
 		}
-		ft_printf("\n");
 		++y;
 	}
-	//ft_printf("BORDEL\n");
-	//ft_printf("==%d,%d\n", map->x, map->y);
 	if (check_start(map) > 0 && check_items(map, items) > 0
 		&& check_exit(map) > 0 && check_edges(map) > 0)
 		return (1);

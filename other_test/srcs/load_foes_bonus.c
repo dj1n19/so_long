@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 19:06:07 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/15 15:34:05 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:40:53 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	load_unicorn_right(void *mlx, void *unicorn_right[8])
 	while (i < 8)
 	{
 		if (!unicorn_right[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_FOE);
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static void	load_unicorn_left(void *mlx, void *unicorn_left[8])
 	while (i < 8)
 	{
 		if (!unicorn_left[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_FOE);
 		i++;
 	}
 }
@@ -82,7 +82,7 @@ static void	load_dragon_right(void *mlx, void *dragon_right[8])
 	while (i < 8)
 	{
 		if (!dragon_right[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_FOE);
 		i++;
 	}
 }
@@ -107,7 +107,7 @@ static void	load_dragon_left(void *mlx, void *dragon_left[8])
 	while (i < 8)
 	{
 		if (!dragon_left[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_FOE);
 		i++;
 	}
 }

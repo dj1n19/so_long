@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 18:47:56 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/15 15:26:55 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:41:21 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	load_chest(void *mlx, void *chest[8])
 	while (i < 8)
 	{
 		if (!chest[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_ITEM);
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static void	load_gems(void *mlx, void *gems[8])
 	while (i < 8)
 	{
 		if (!gems[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_ITEM);
 		i++;
 	}
 }
@@ -82,7 +82,7 @@ static void	load_crystal(void *mlx, void *crystal[8])
 	while (i < 8)
 	{
 		if (!crystal[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_ITEM);
 		i++;
 	}
 }
@@ -107,7 +107,7 @@ static void	load_gold(void *mlx, void *gold[8])
 	while (i < 8)
 	{
 		if (!gold[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_ITEM);
 		i++;
 	}
 }

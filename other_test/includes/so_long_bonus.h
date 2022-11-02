@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/09 14:51:20 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/31 15:56:47 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,14 @@
 # include "mlx.h"
 # include "assets_bonus.h"
 # include "structures_bonus.h"
+# include "error_bonus.h"
 # include "libft.h"
 # define TILESIZE 64
 # define ABS(x) if (x < 0) x = -x
 // TEST
+//# include "leaks.h"
 # include <stdio.h>
 // TEST
-
-typedef	struct	s_coord
-{
-	int	x;
-	int	y;
-}	t_coord;
-
-typedef struct	s_node
-{
-	struct s_coord	coord;
-	struct s_node	*next;
-}	t_node;
 
 typedef enum	e_keys
 {
@@ -65,12 +55,13 @@ void    draw_characters(t_img *img, t_player *player, t_foe **foes);
 void	draw_spell(t_img *img, t_player *player, t_textures *tex);
 int     draw(t_datas *datas);
 void    move_player(t_datas *datas);
-void    move_foes(t_datas *datas);
+void    *move_foes(void *datas);
 void    foe_death(t_foe *foe, t_textures *textures);
+void	error_handler(char *err);
 
 // OLD
 
-void    ft_player_attack(t_datas *datas);
+void    *ft_player_attack(t_datas *datas);
 void    ft_foe_attack(t_datas *datas);
 int     ft_check_unicorns(t_map *map);
 int     ft_check_dragons(t_map *map);
@@ -106,7 +97,7 @@ void    ft_player_anim_west(t_player *player, t_textures *textures);
 //void    ft_draw_items(t_datas *datas, char item, int x, int y);
 //void    ft_draw_map_objects(t_datas *datas);
 void    ft_draw_spell(t_datas *datas);
-void    ft_spell_cast(t_datas *datas);
+void    *ft_spell_cast(void *datas);
 
 
 int ft_key_up(int keycode, t_datas *datas);

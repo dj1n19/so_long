@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 17:25:04 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/15 15:18:12 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/10/29 11:03:42 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	load_player_up(void *mlx, void *player_up[8])
 	while (i < 8)
 	{
 		if (!player_up[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
@@ -57,7 +57,7 @@ static void	load_player_right(void *mlx, void *player_right[8])
 	while (i < 8)
 	{
 		if (!player_right[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
@@ -82,7 +82,7 @@ static void	load_player_down(void *mlx, void *player_down[8])
 	while (i < 8)
 	{
 		if (!player_down[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
@@ -95,6 +95,7 @@ static void	load_player_left(void *mlx, void *player_left[8])
 
 	w = TILESIZE;
 	h = TILESIZE;
+	i = 0;
 	player_left[0] = mlx_xpm_file_to_image(mlx, PML_1, &w, &h);
 	player_left[1] = mlx_xpm_file_to_image(mlx, PML_2, &w, &h);
 	player_left[2] = mlx_xpm_file_to_image(mlx, PML_3, &w, &h);
@@ -106,7 +107,7 @@ static void	load_player_left(void *mlx, void *player_left[8])
 	while (i < 8)
 	{
 		if (!player_left[i])
-			exit(EXIT_FAILURE); // TODO ERROR
+			error_handler(E_TEX_PLAYER);
 		i++;
 	}
 }
