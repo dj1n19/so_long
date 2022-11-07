@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:14:09 by bgenie            #+#    #+#             */
-/*   Updated: 2022/05/20 16:06:21 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/05 14:35:24 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	ft_check_map(t_datas *datas)
 {
 	int	items;
 
-	if (ft_check_edge(datas->map->blueprint) == 2)
+	if (ft_check_edge(datas->map->blueprint))
 		ft_e_map(2, datas);
 	items = ft_check_item(datas->map->blueprint);
 	if (!items)

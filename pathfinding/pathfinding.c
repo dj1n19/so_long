@@ -16,8 +16,6 @@ unsigned long   get_exit(t_map *map)
             {
                 exit_pos = ((unsigned long)y_exit << 32);
                 exit_pos += (unsigned long)x_exit;
-                printf("[%u|%u]\n", x_exit, y_exit);
-                //printf("[%u|%u]\n", (unsigned int)exit_pos, (unsigned int)(exit_pos >> 32));
                 return exit_pos;
             }
             ++x_exit;
@@ -35,7 +33,6 @@ unsigned int    calc_cost(unsigned long exit_pos, unsigned int x, unsigned int y
         dist = (unsigned int)(exit_pos >> 32) - y;
     else
         dist = y - (unsigned int)(exit_pos >> 32);
-    //printf(">>>%u(%u-%u)\n", dist, y, (unsigned int)(exit_pos >> 32));
     if ((unsigned int)exit_pos > x)
         dist += ((unsigned int)(exit_pos)) - x;
     else
@@ -50,7 +47,6 @@ unsigned int **get_cost_map(t_map *map)
     unsigned int    y;
     unsigned int    **cost_map;
 
-    //printf(">(%u,%u)\n", map->x, map->y);
     cost_map = (unsigned int **) malloc(sizeof(unsigned int *) * map->y);
     if (!cost_map)
         error_handler(NULL);
@@ -72,31 +68,32 @@ unsigned int **get_cost_map(t_map *map)
     return cost_map;
 }
 
-unsigned long    get_next(t_map *map, unsigned int **cost_map, unsigned int x, unsigned int y)
+unsigned long    get_next(t_map *map, unsigned int **cost_map, unsigned int x, unsigned int y, unsigned long prev)
 {
     unsigned int    lower_cost;
     unsigned long   next;
 
     lower_cost = UINT_MAX;
-    if (cost_map[y][x - 1] < lower_cost && map->map[y][x - 1] != '1')
+    next = prev;
+    if (x - 1 != (unsigned int)prev && cost_map[y][x - 1] < lower_cost && map->map[y][x - 1] != '1')
     {
         lower_cost = cost_map[y][x - 1];
         next = ((unsigned long)y << 32);
         next += (unsigned long)(x - 1);
     }
-    if (cost_map[y][x + 1] < lower_cost && map->map[y][x + 1] != '1')
+    if (x + 1 != (unsigned int)prev && cost_map[y][x + 1] < lower_cost && map->map[y][x + 1] != '1')
     {
         lower_cost = cost_map[y][x + 1];
         next = ((unsigned long)y << 32);
         next += (unsigned long)(x + 1);
     }
-    if (cost_map[y - 1][x] < lower_cost && map->map[y - 1][x] != '1')
+    if (y - 1 != (unsigned int)(prev >> 32) && cost_map[y - 1][x] < lower_cost && map->map[y - 1][x] != '1')
     {
         lower_cost = cost_map[y - 1][x];
         next = ((unsigned long)(y - 1) << 32);
         next += (unsigned long)x;
     }
-    if (cost_map[y + 1][x] < lower_cost && map->map[y + 1][x] != '1')
+    if (y + 1 != (unsigned int)(prev >> 32) && cost_map[y + 1][x] < lower_cost && map->map[y + 1][x] != '1')
     {
         lower_cost = cost_map[y + 1][x];
         next = ((unsigned long)(y + 1) << 32);
@@ -107,8 +104,9 @@ unsigned long    get_next(t_map *map, unsigned int **cost_map, unsigned int x, u
 
 int has_next(t_map *map, unsigned int x, unsigned int y)
 {
-    int has_next = 0; 
-
+    int has_next;
+    
+    has_next = 0;
     if (map->map[y][x - 1] != '1')
         has_next++;
     if (map->map[y][x + 1] != '1')
@@ -142,6 +140,8 @@ int pathfinding(t_map *map, unsigned int px, unsigned int py)
     unsigned int    x;
     unsigned int    y;
     unsigned long   next;
+    unsigned long   prev;
+    unsigned int    mvt;
 
     cost_map = get_cost_map(map);
     for (int i = 1; i < map->y - 1; ++i)
@@ -152,19 +152,23 @@ int pathfinding(t_map *map, unsigned int px, unsigned int py)
     }
     x = px;
     y = py;
-    if (has_next(map, x, y) == 0)
-        return 0;
-    //map->map[px][py] = '1';
-    while (1)
+    mvt = map->x * map->y;
+    while (mvt--)
     {
-        print_map(map, x, y);
+        if (has_next(map, x, y) == 0)
+            return 0;
+        if (cost_map[y][x] == 0)
+            return 1;
         if (has_next(map, x, y) == 1)
             map->map[y][x] = '1';
-        next = get_next(map, cost_map, x, y);
+        next = get_next(map, cost_map, x, y, prev);
+        prev = (unsigned long)x;
+        prev += ((unsigned long)y << 32);
         x = (unsigned int)next;
         y = (unsigned int)(next >> 32);
-        if (cost_map[y][x] == '0')
-            return 1;
+        print_map(map, x, y);
+        usleep(500000);
+        system("clear");
     }
     return 0;
 }

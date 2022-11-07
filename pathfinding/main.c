@@ -1,8 +1,6 @@
 
 #include "pathfinding.h"
 
-
-
 void    error_handler(char *err)
 {
     if (errno != 0)
@@ -30,7 +28,6 @@ static t_map   *load_map(char *file, t_map *map)
     if (!buf)
         error_handler(NULL);
     map->x = getline(&buf, &buf_size, f) - 1;
-    printf("==%u\n", map->x);
     map->y = map->x;
     cmap = (char **) malloc(sizeof(char *) * map->y);
     if (!cmap)
@@ -57,9 +54,12 @@ int main(int argc, char **argv)
         return 1;
     }
     ++argv;
+    map = (t_map *) malloc(sizeof(t_map));
+    if (!map)
+        error_handler(NULL);
     map = load_map(*argv, map);
     for (int i = 0; i < map->y; i++)
         printf("%s", map->map[i]);
-    printf(">>> %d <<<\n", pathfinding(map, 2, 2));
+    printf(">>> %d <<<\n", pathfinding(map, 3, 1));
     return 0;
 }
