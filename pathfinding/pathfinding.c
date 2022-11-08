@@ -68,38 +68,41 @@ unsigned int **get_cost_map(t_map *map)
     return cost_map;
 }
 
-unsigned long    get_next(t_map *map, unsigned int **cost_map, unsigned int x, unsigned int y, unsigned long prev)
+t_list    *get_next(t_map *map, unsigned int **cost_map, t_list *node, t_list *head)
 {
     unsigned int    lower_cost;
     unsigned long   next;
+    t_list          *next_node;
 
     lower_cost = UINT_MAX;
-    next = prev;
-    if (x - 1 != (unsigned int)prev && cost_map[y][x - 1] < lower_cost && map->map[y][x - 1] != '1')
+    next = 0;
+    if (!include(node->x - 1, node->y, head) && cost_map[node->y][node->x - 1] < lower_cost && map->map[node->y][node->x - 1] != '1')
     {
-        lower_cost = cost_map[y][x - 1];
-        next = ((unsigned long)y << 32);
-        next += (unsigned long)(x - 1);
+        lower_cost = cost_map[node->y][node->x - 1];
+        next = ((unsigned long)node->y << 32);
+        next += (unsigned long)(node->x - 1);
     }
-    if (x + 1 != (unsigned int)prev && cost_map[y][x + 1] < lower_cost && map->map[y][x + 1] != '1')
+    if (!include(node->x + 1, node->y, head) && cost_map[node->y][node->x + 1] < lower_cost && map->map[node->y][node->x + 1] != '1')
     {
-        lower_cost = cost_map[y][x + 1];
-        next = ((unsigned long)y << 32);
-        next += (unsigned long)(x + 1);
+        lower_cost = cost_map[node->y][node->x + 1];
+        next = ((unsigned long)node->y << 32);
+        next += (unsigned long)(node->x + 1);
     }
-    if (y - 1 != (unsigned int)(prev >> 32) && cost_map[y - 1][x] < lower_cost && map->map[y - 1][x] != '1')
+    if (!include(node->x, node->y - 1, head) && cost_map[node->y - 1][node->x] < lower_cost && map->map[node->y - 1][node->x] != '1')
     {
-        lower_cost = cost_map[y - 1][x];
-        next = ((unsigned long)(y - 1) << 32);
-        next += (unsigned long)x;
+        lower_cost = cost_map[node->y - 1][node->x];
+        next = ((unsigned long)(node->y - 1) << 32);
+        next += (unsigned long)node->x;
     }
-    if (y + 1 != (unsigned int)(prev >> 32) && cost_map[y + 1][x] < lower_cost && map->map[y + 1][x] != '1')
+    if (!include(node->x, node->y + 1, head) && cost_map[node->y + 1][node->x] < lower_cost && map->map[node->y + 1][node->x] != '1')
     {
-        lower_cost = cost_map[y + 1][x];
-        next = ((unsigned long)(y + 1) << 32);
-        next += (unsigned long)x;
+        lower_cost = cost_map[node->y + 1][node->x];
+        next = ((unsigned long)(node->y + 1) << 32);
+        next += (unsigned long)node->x;
     }
-    return next;
+    if (next != 0)
+        return (create_node((unsigned int)next, (unsigned int)(next >> 32)));
+    return (NULL);
 }
 
 int has_next(t_map *map, unsigned int x, unsigned int y)
@@ -137,37 +140,28 @@ void    print_map(t_map *map, unsigned int x, unsigned int y)
 int pathfinding(t_map *map, unsigned int px, unsigned int py)
 {
     unsigned int **cost_map;
-    unsigned int    x;
-    unsigned int    y;
-    unsigned long   next;
-    unsigned long   prev;
-    unsigned int    mvt;
+    t_list          *next;
+    t_list_meta     *meta;
 
     cost_map = get_cost_map(map);
-    for (int i = 1; i < map->y - 1; ++i)
+    next = create_node(px, py);
+    meta = create_list(NULL, NULL);
+    while (1)
     {
-        for (int j = 1; j < map->x -1; ++j)
-            printf("%u ", cost_map[i][j]);
-        printf("\n");
-    }
-    x = px;
-    y = py;
-    mvt = map->x * map->y;
-    while (mvt--)
-    {
-        if (has_next(map, x, y) == 0)
+        meta = push_back(next, meta);
+        if (has_next(map, meta->tail->x, meta->tail->y) == 0)
             return 0;
-        if (cost_map[y][x] == 0)
+        if (cost_map[meta->tail->y][meta->tail->x] == 0)
             return 1;
-        if (has_next(map, x, y) == 1)
-            map->map[y][x] = '1';
-        next = get_next(map, cost_map, x, y, prev);
-        prev = (unsigned long)x;
-        prev += ((unsigned long)y << 32);
-        x = (unsigned int)next;
-        y = (unsigned int)(next >> 32);
-        print_map(map, x, y);
-        usleep(500000);
+        next = get_next(map, cost_map, next, meta->head);
+        if (!next)
+        {
+            map->map[meta->tail->y][meta->tail->x] = '1';
+            meta = pop_back(meta);
+            next = meta->tail;
+        }
+        print_map(map, meta->tail->x, meta->tail->y);
+        usleep(250000);
         system("clear");
     }
     return 0;
