@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/10 17:13:12 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:33:38 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <errno.h>
+# include <limits.h>
 # include "mlx.h"
 # include "assets_bonus.h"
 # include "structures_bonus.h"

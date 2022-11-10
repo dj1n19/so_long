@@ -3,63 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:34:27 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/30 15:23:20 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:22:44 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long_bonus.h"
-
-static void	draw_ground(t_img *img, t_textures *textures, t_map *map)
-{
-	int	x;
-	int	y;
-
-	y = 1;
-	while (y < map->y - 1)
-	{
-		x = 1;
-		while (x < map->x - 1)
-		{
-			write_to_img(img, textures->ground, TILESIZE * x, TILESIZE * y);
-			x++;
-		}
-		y++;
-	}
-}
-
-static void	draw_edges(t_img *img, t_textures *textures, t_map *map)
-{
-	int	i;
-
-	i = 1;
-	while (i < map->x - 1)
-	{
-		write_to_img(img, textures->map_edges[1], TILESIZE * i, 0);
-		write_to_img(img, textures->map_edges[5],
-			TILESIZE * i, (map->y - 1) * TILESIZE);
-		i++;
-	}
-	i = 1;
-	while (i < map->y - 1)
-	{
-		write_to_img(img, textures->map_edges[3],
-			(map->x - 1) * TILESIZE, TILESIZE * i);
-		write_to_img(img, textures->map_edges[7], 0, TILESIZE * i);
-		i++;
-	}
-}
-
-static void	draw_corner(t_img *img, t_textures *textures, t_map *map)
-{
-	write_to_img(img, textures->map_edges[0], 0, 0);
-	write_to_img(img, textures->map_edges[2], (map->x - 1) * TILESIZE, 0);
-	write_to_img(img, textures->map_edges[4],
-		(map->x - 1) * TILESIZE, (map->y - 1) * TILESIZE);
-	write_to_img(img, textures->map_edges[6], 0, (map->y - 1) * TILESIZE);
-}
 
 void	write_to_img(t_img *dst_img, void *src_datas, int x, int y)
 {
@@ -113,9 +64,7 @@ int	draw(t_datas *d)
 		return (-1);
 	tmp_img.addr = mlx_get_data_addr(tmp_img.img,
 			&tmp_img.bpp, &tmp_img.line_len, &tmp_img.endian);
-	draw_corner(&tmp_img, d->textures, d->map);
-	draw_edges(&tmp_img, d->textures, d->map);
-	draw_ground(&tmp_img, d->textures, d->map);
+	draw_map(&tmp_img, d->textures, d->map);
 	draw_map_objects(&tmp_img, d);
 	draw_characters(&tmp_img, d->player, d->foes);
 	if (d->player->target)
@@ -126,6 +75,6 @@ int	draw(t_datas *d)
 	ft_memmove(d->img, &tmp_img, sizeof(tmp_img));
 	mlx_put_image_to_window(d->mlx, d->win, d->img->img, 0, 0);
 	mlx_destroy_image(d->mlx, tmp_img.img);
-	draw_str(d);	
+	draw_str(d);
 	return (0);
 }

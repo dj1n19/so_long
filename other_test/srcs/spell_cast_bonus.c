@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spell_cast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 16:33:31 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/31 16:08:21 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:13:33 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ static void	spell_anim(t_player *player, t_textures *textures)
 {
 	player->current = textures->player_attack[player->frame];
 	player->frame++;
-	if (player->frame > 7)
-	{
-		
-	}
 }
 
 static int	is_front_wall(t_player *player, t_map *map)

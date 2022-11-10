@@ -1,19 +1,12 @@
 #ifndef PATHFINDING_H
 # define PATHFINDING_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <limits.h>
 
-typedef struct s_list
+typed struct s_list
 {
-    unsigned int    x;
-    unsigned int    y;
-    struct s_list   *next;
-}   t_list;
+	unsigned int	x;
+	unsigned int	y;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_list_meta
 {
@@ -22,9 +15,10 @@ typedef struct s_list_meta
     unsigned int    size;
 }   t_list_meta;
 
-
-void    error_handler(char *err);
-int pathfinding(t_map *map, unsigned int px, unsigned int py);
+int 		pathfinding(t_map *map, unsigned int px, unsigned int py);
+t_list		*get_next(t_map *map, unsigned int **cost_map,
+	t_list *node, t_list *head);
+int			has_next(t_map *map, unsigned int x, unsigned int y);
 
 t_list_meta *create_list(t_list *head, t_list *tail);
 t_list      *create_node(unsigned int x, unsigned int y);

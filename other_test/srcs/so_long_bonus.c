@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/10 17:18:37 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/10 21:13:46 by dj1n             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	ft_init(char *file)
 	ft_check_player(datas);
 	ft_place_foes(datas);
 	datas = init_datas(datas, &img);
-	if (!pathfinding(datas->map, datas->player->x / TILESIZE, datas->player->y / TILESIZE))
+	if (!pathfinding(datas->map, datas->player->x / TILESIZE,
+			datas->player->y / TILESIZE))
 		exit(EXIT_FAILURE);
 	mlx_hook(datas->win, 2, 1L << 0, ft_key_down, datas);
 	mlx_hook(datas->win, 3, 1L << 1, ft_key_up, datas);
