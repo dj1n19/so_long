@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/31 15:56:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/10 17:13:12 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "assets_bonus.h"
 # include "structures_bonus.h"
 # include "error_bonus.h"
+# include "pathfinding.h"
 # include "libft.h"
 # define TILESIZE 64
 # define ABS(x) if (x < 0) x = -x
