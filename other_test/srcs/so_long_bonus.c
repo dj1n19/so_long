@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/10 21:13:46 by dj1n             ###   ########.fr       */
+/*   Updated: 2022/11/13 15:53:26 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int	check_args(char *arg)
 {
 	arg = ft_strrchr(arg, '.');
+	if (!arg)
+		error_handler(E_FILE);
 	if (ft_strnstr(arg, ".ber", 5) != 0 && *(arg + 4) == 0)
 		return (1);
 	return (0);
@@ -58,7 +60,7 @@ static void	ft_init(char *file)
 	datas = init_datas(datas, &img);
 	if (!pathfinding(datas->map, datas->player->x / TILESIZE,
 			datas->player->y / TILESIZE))
-		exit(EXIT_FAILURE);
+		error_handler(E_PATH);
 	mlx_hook(datas->win, 2, 1L << 0, ft_key_down, datas);
 	mlx_hook(datas->win, 3, 1L << 1, ft_key_up, datas);
 	mlx_hook(datas->win, 17, 0, ft_close, datas);
@@ -69,15 +71,9 @@ static void	ft_init(char *file)
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
-	{
-		ft_printf("\e[31mERROR: %s\n\e[0m", "E_ARGS");
-		exit(EXIT_FAILURE);
-	}
+		error_handler(E_ARGS);
 	if (!check_args(*++argv))
-	{
-		ft_printf("\e[31mERROR: %s\n\e[0m", "E_FILE");
-		exit(EXIT_FAILURE);
-	}
+		error_handler(E_FILE);
 	ft_init(*argv);
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathfinding_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/11 12:12:52 by bgenie            #+#    #+#             */
+/*   Updated: 2022/11/13 15:54:07 by bgenie           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long_bonus.h"
 
 static unsigned long	get_exit(t_map *map)
@@ -77,7 +89,7 @@ static t_map	*copy_map(t_map *map)
 
 	map_cpy = malloc(sizeof(t_map));
 	if (!map_cpy)
-		exit(EXIT_FAILURE);
+		error_handler(E_MALLOC);
 	ft_memmove(map_cpy, map, sizeof(t_map));
 	map_cpy->map = (char **) malloc(sizeof(char *) * map->y);
 	y = 0;
@@ -86,7 +98,7 @@ static t_map	*copy_map(t_map *map)
 		x = 0;
 		map_cpy->map[y] = (char *) malloc(sizeof(char) * map->x);
 		if (!map_cpy->map[y])
-			exit(EXIT_FAILURE);
+			error_handler(E_MALLOC);
 		while (x < map->x)
 		{
 			map_cpy->map[y][x] = map->map[y][x];
@@ -97,23 +109,17 @@ static t_map	*copy_map(t_map *map)
 	return (map_cpy);
 }
 
-int	pathfinding(t_map *map, unsigned int px, unsigned int py)
-{
-	unsigned int	**cost_map;
-	t_list			*next;
-	t_list_meta		*meta;
-	t_map			*map_cpy;
 
-	map_cpy = copy_map(map);
-	cost_map = get_cost_map(map_cpy);
-	next = create_node(px, py);
-	meta = create_list(NULL, NULL);
+
+static int	pathfinding_loop(t_map *map_cpy, unsigned int **cost_map, t_list_meta *meta, t_list *next)
+{
 	while (1)
 	{
 		meta = push_back(next, meta);
-		if (has_next(map_cpy, meta->tail->x, meta->tail->y) == 0
-			|| cost_map[meta->tail->y][meta->tail->x] == 0)
-			break ;
+		if (has_next(map_cpy, meta->tail->x, meta->tail->y) == 0)
+			return (0);
+		if (cost_map[meta->tail->y][meta->tail->x] == 0)
+			return (1);
 		next = get_next(map_cpy, cost_map, next, meta->head);
 		if (!next)
 		{
@@ -122,6 +128,22 @@ int	pathfinding(t_map *map, unsigned int px, unsigned int py)
 			next = meta->tail;
 		}
 	}
-	free(map_cpy);
-	return (!cost_map[meta->tail->y][meta->tail->x]);
+	return (0);
+}
+
+int	pathfinding(t_map *map, unsigned int px, unsigned int py)
+{
+	unsigned int	**cost_map;	
+	t_list_meta		meta;
+	t_list			*next;
+	t_map			*map_cpy;
+	int				res;
+
+	map_cpy = copy_map(map);
+	cost_map = get_cost_map(map_cpy);
+	next = create_node(px, py);
+	meta = create_list(NULL, NULL, &meta);
+	res = pathfinding_loop(map_cpy, cost_map, &meta, next);
+	free_all(map_cpy, cost_map, &meta);
+	return (res);
 }

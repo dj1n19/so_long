@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:34:18 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/28 16:00:47 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:34:17 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void	ft_check_player(t_datas *datas)
 		}
 	}
 	if (!datas->player->current)
-		exit(EXIT_FAILURE);
+		error_handler(E_PLAYER);
 }

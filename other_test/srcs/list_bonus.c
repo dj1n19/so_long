@@ -1,12 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/11 12:13:50 by bgenie            #+#    #+#             */
+/*   Updated: 2022/11/13 15:10:45 by bgenie           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long_bonus.h"
 
-t_list_meta	*create_list(t_list *head, t_list *tail)
+t_list_meta	create_list(t_list *head, t_list *tail, t_list_meta *meta)
 {
-	t_list_meta	*meta;
-
-	meta = malloc(sizeof(t_list_meta));
-	if (!meta)
-		return (NULL);
 	meta->head = head;
 	meta->tail = tail;
 	if (head && tail)
@@ -15,7 +22,7 @@ t_list_meta	*create_list(t_list *head, t_list *tail)
 		meta->size = 1;
 	else
 		meta->size = 0;
-	return (meta);
+	return (*meta);
 }
 
 t_list	*create_node(unsigned int x, unsigned int y)
@@ -34,7 +41,7 @@ t_list	*create_node(unsigned int x, unsigned int y)
 t_list_meta	*push_back(t_list *node, t_list_meta *meta)
 {
 	if (!node || !meta)
-		return (NULL);
+		return (meta);
 	if (meta->size == 0)
 	{
 		meta->head = node;
@@ -58,9 +65,17 @@ t_list_meta	*pop_back(t_list_meta *meta)
 		return (NULL);
 	if (meta->size == 0)
 		return (meta);
+	if (meta->size == 1)
+	{
+		free(meta->tail);
+		meta->size--;
+		return (meta);
+	}
 	node = meta->head;
-	while (node->next != meta->tail)
+	while (node->next && node->next != meta->tail)
+	{
 		node = node->next;
+	}
 	free(node->next);
 	node->next = NULL;
 	meta->tail = node;

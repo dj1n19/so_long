@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dj1n <dj1n@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 12:43:53 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/10 22:30:26 by dj1n             ###   ########.fr       */
+/*   Updated: 2022/11/11 12:12:38 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,6 @@ static void	move_west(t_player *player, t_textures *textures, t_map *map)
 		player->x -= 8;
 		player->current = textures->player_left[player->frame];
 		player->frame++;
-	}
-}
-
-static void	loot_item(t_datas *datas)
-{
-	char		**map;
-	int			x;
-	int			y;
-
-	map = datas->map->map;
-	x = datas->player->x;
-	y = datas->player->y;
-	if (map[(y + 32) / 64][(x + 32) / 64] == 'C'
-		|| map[(y + 32) / 64][(x + 32) / 64] == 'G'
-		|| map[(y + 32) / 64][(x + 32) / 64] == 'K'
-		|| map[(y + 32) / 64][(x + 32) / 64] == 'A')
-	{
-		--datas->items;
-		map[(y + 32) / 64][(x + 32) / 64] = '0';
 	}
 }
 

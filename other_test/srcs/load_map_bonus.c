@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:10:39 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/31 14:56:10 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/13 15:52:58 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	get_map_size(char *file, t_map *map)
 	y = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		exit(EXIT_FAILURE);
+		error_handler(NULL);
 	line = get_next_line(fd);
 	x = ft_strlen(line) - 1;
 	free(line);

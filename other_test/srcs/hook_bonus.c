@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 15:38:38 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/30 15:18:24 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/11 12:16:16 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_key_down(int keycode, t_datas *datas)
 	}
 	else if (datas->pt_running == 0 && datas->mt_running == 0 && keycode == ESC)
 		ft_close(datas);
-	return(0);
+	return (0);
 }
 
 int	ft_hook(t_datas *datas)

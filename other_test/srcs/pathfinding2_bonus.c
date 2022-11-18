@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathfinding2_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/11 12:12:59 by bgenie            #+#    #+#             */
+/*   Updated: 2022/11/13 15:55:04 by bgenie           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long_bonus.h"
 
 static unsigned long	get_next_x(t_map *map,
@@ -90,4 +102,21 @@ int	has_next(t_map *map, unsigned int x, unsigned int y)
 	if (map->map[y + 1][x] != '1')
 		has_next++;
 	return (has_next);
+}
+
+void	free_all(t_map *map_cpy, unsigned int **cost_map,t_list_meta *meta)
+{
+	int	i;
+
+	i = 0;
+	while (i < map_cpy->x)
+	{
+		free(map_cpy->map[i]);
+		free(cost_map[i]);
+		i++;
+	}
+	free(map_cpy->map);
+	free(map_cpy);
+	free(cost_map);
+	clear_list(meta);
 }

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 17:02:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/10/29 10:49:41 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:36:55 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	*load_portals(void *mlx, void *portal_open[8], void *portal_close)
 	portal_open[7] = mlx_xpm_file_to_image(mlx, POPEN_8, &w, &h);
 	i = 0;
 	if (!portal_close)
-		exit(EXIT_FAILURE);
+		error_handler(E_TEX_OBJ);
 	while (i < 8)
 	{
 		if (!portal_open[i])

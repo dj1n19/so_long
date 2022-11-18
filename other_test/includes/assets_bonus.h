@@ -6,13 +6,12 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 15:57:45 by bgenie            #+#    #+#             */
-/*   Updated: 2022/08/11 17:59:18 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/11 12:49:43 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASSETS_H
-# define ASSETS_H
-// ITEMS
+#ifndef ASSETS_BONUS_H
+# define ASSETS_BONUS_H
 # define CHST_1 "../../assets/chest_1.xpm"
 # define CHST_2 "../../assets/chest_2.xpm"
 # define CHST_3 "../../assets/chest_3.xpm"
@@ -45,7 +44,6 @@
 # define GOLD_6 "../../assets/gold_6.xpm"
 # define GOLD_7 "../../assets/gold_7.xpm"
 # define GOLD_8 "../../assets/gold_8.xpm"
-// BORDERS
 # define CBL "../../assets/corner_bottom_left.xpm"
 # define CBR "../../assets/corner_bottom_right.xpm"
 # define CTL "../../assets/corner_top_left.xpm"
@@ -54,7 +52,6 @@
 # define EDT "../../assets/edge_top.xpm"
 # define EDL "../../assets/edge_left.xpm"
 # define EDR "../../assets/edge_right.xpm"
-// MAP OBJECTS
 # define PCLOSED "../../assets/portal_close.xpm"
 # define POPEN_1 "../../assets/portal_open_1.xpm"
 # define POPEN_2 "../../assets/portal_open_2.xpm"
@@ -66,7 +63,6 @@
 # define POPEN_8 "../../assets/portal_open_8.xpm"
 # define WALL "../../assets/trees.xpm"
 # define GRND "../../assets/grass.xpm"
-// PLAYER
 # define PMD_1 "../../assets/player_down_1.xpm"
 # define PMD_2 "../../assets/player_down_2.xpm"
 # define PMD_3 "../../assets/player_down_3.xpm"
@@ -107,7 +103,6 @@
 # define PAA_6 "../../assets/p_anim_att_6.xpm"
 # define PAA_7 "../../assets/p_anim_att_7.xpm"
 # define PAA_8 "../../assets/p_anim_att_8.xpm"
-// FOES
 # define UML_1 "../../assets/unicorn_left_1.xpm"
 # define UML_2 "../../assets/unicorn_left_2.xpm"
 # define UML_3 "../../assets/unicorn_left_3.xpm"
@@ -204,7 +199,6 @@
 # define DDR_6 "../../assets/d_death_r_6.xpm"
 # define DDR_7 "../../assets/d_death_r_7.xpm"
 # define DDR_8 "../../assets/d_death_r_8.xpm"
-// EFFECTS
 # define SPL_1 "../../assets/spell_1.xpm"
 # define SPL_2 "../../assets/spell_2.xpm"
 # define SPL_3 "../../assets/spell_3.xpm"
