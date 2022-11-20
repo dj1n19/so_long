@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 15:15:10 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 14:45:37 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	ft_e_load(int errnum, t_datas *datas);
 int		ft_close(t_datas *datas);
 int		ft_key_hook(int keycode, t_datas *datas);
 void	ft_e_path(int errnum, t_datas *datas);
+void	free_map(t_map *map);
 
 #endif

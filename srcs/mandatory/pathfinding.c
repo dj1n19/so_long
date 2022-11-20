@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:12:52 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 15:19:54 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 14:59:20 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static unsigned int	calc_cost(unsigned long exit_pos,
 	return (dist);
 }
 
-static unsigned int	**get_cost_map(t_map *map, t_map *map_cpy)
+unsigned int	**get_cost_map(t_map *map, t_map *map_cpy)
 {
 	unsigned long	exit_pos;
 	unsigned int	x;
@@ -71,7 +71,7 @@ static unsigned int	**get_cost_map(t_map *map, t_map *map_cpy)
 		cost_map[y] = (unsigned int *) malloc(sizeof(unsigned) * map->size_x);
 		if (!cost_map[y])
 		{
-			free_all(map_cpy, cost_map, NULL);
+			free_all(map_cpy, cost_map, NULL, 1);
 			return (NULL);
 		}
 		while (++x < (unsigned)map->size_x)
@@ -80,7 +80,7 @@ static unsigned int	**get_cost_map(t_map *map, t_map *map_cpy)
 	return (cost_map);
 }
 
-static t_map	*copy_map(t_map *map)
+t_map	*copy_map(t_map *map)
 {
 	t_map	*map_cpy;
 	int		y;
@@ -96,7 +96,7 @@ static t_map	*copy_map(t_map *map)
 		map_cpy->map[y] = (char *) malloc(sizeof(char) * map->size_x);
 		if (!map_cpy->map[y])
 		{
-			free_all(map_cpy, NULL, NULL);
+			free_all(map_cpy, NULL, NULL, 1);
 			return (NULL);
 		}
 		while (x < map->size_x)
@@ -124,6 +124,6 @@ int	pathfinding(t_datas *datas, t_map *map, unsigned int px, unsigned int py)
 	next = create_node(px, py);
 	meta = create_list(NULL, NULL, &meta);
 	res = pathfinding_loop(map_cpy, cost_map, &meta, next);
-	free_all(map_cpy, cost_map, &meta);
+	free_all(map_cpy, cost_map, &meta, 1);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:12:59 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 14:21:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 15:29:26 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	free_all(t_map *map_cpy, unsigned int **cost_map, t_list_meta *meta)
 	int	i;
 
 	i = 0;
-	while (i < map_cpy->x)
+	while (i < map_cpy->y)
 	{
 		free(map_cpy->map[i]);
 		free(cost_map[i]);

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 15:07:26 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 15:14:49 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ static t_datas	*init_datas(void)
 
 static void	ft_init(char *file)
 {
-	t_datas		*datas;
+	t_datas			*datas;
 
 	datas = init_datas();
 	ft_load_map(file, datas);
 	datas->collected = ft_check_map(datas);
 	place_player(datas->player, datas->map);
-	if (pathfinding(datas, datas->map, datas->player->pos_x, datas->player->pos_y) == 0)
+	if (pathfinding(datas, datas->map, datas->player->pos_x,
+			datas->player->pos_y) == 0)
 		ft_e_map(8, datas);
+	is_item_valid(datas);
 	datas->mlx = mlx_init();
 	ft_load_textures(datas);
 	datas->win = mlx_new_window(datas->mlx, datas->map->size_x * TILESIZE,

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:12:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 14:21:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 15:46:20 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,23 @@ static void	free_foes(t_foe **foes)
 
 static void	free_threads(t_datas *datas)
 {
-	pthread_cancel(*datas->move_thread);
-	pthread_cancel(*datas->player_thread);
-	pthread_cancel(*datas->foe_thread);
-	pthread_cancel(*datas->item_thread);
-	free(datas->move_thread);
-	free(datas->player_thread);
-	free(datas->foe_thread);
-	free(datas->item_thread);
-	free(datas->attr);
+	if (datas)
+	{
+		pthread_cancel(*datas->foe_thread);
+		pthread_cancel(*datas->move_thread);
+		pthread_cancel(*datas->player_thread);
+		pthread_cancel(*datas->item_thread);
+		if (datas->move_thread)
+			free(datas->move_thread);
+		if (datas->player_thread)
+			free(datas->player_thread);
+		if (datas->foe_thread)
+			free(datas->foe_thread);
+		if (datas->item_thread)
+			free(datas->item_thread);
+		if (datas->attr)
+			free(datas->attr);
+	}
 }
 
 int	ft_close(t_datas *datas)

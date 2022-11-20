@@ -6,12 +6,12 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:43:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 15:11:15 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 15:17:23 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PATHFINDING_BONUS_H
-# define PATHFINDING_BONUS_H
+#ifndef PATHFINDING_H
+# define PATHFINDING_H
 
 typedef struct s_list
 {
@@ -27,20 +27,27 @@ typedef struct s_list_meta
 	unsigned int	size;
 }	t_list_meta;
 
-int			pathfinding(t_datas *datas, t_map *map, unsigned int px, unsigned int py);
-t_list		*get_next(t_map *map, unsigned int **cost_map,
-				t_list *node, t_list *head);
-int			has_next(t_map *map, unsigned int x, unsigned int y);
-void		free_all(t_map *map_cpy, unsigned int **cost_map, t_list_meta *meta);
-
-t_list_meta	create_list(t_list *head, t_list *tail, t_list_meta *meta);
-t_list		*create_node(unsigned int x, unsigned int y);
-t_list_meta	*push_back(t_list *node, t_list_meta *meta);
-t_list_meta	*pop_back(t_list_meta *meta);
-int			include(unsigned int x, unsigned int y, t_list *head);
-t_map		*create_map_cpy(t_map *map);
-int			pathfinding_loop(t_map *map_cpy, unsigned int **cost_map,
-				t_list_meta *meta, t_list *next);
-void		clear_list(t_list_meta *meta);
+int				pathfinding(t_datas *datas, t_map *map,
+					unsigned int px, unsigned int py);
+t_list			*get_next(t_map *map, unsigned int **cost_map,
+					t_list *node, t_list *head);
+int				has_next(t_map *map, unsigned int x, unsigned int y);
+void			free_all(t_map *map_cpy, unsigned int **cost_map,
+					t_list_meta *meta, int free_mc);
+t_list_meta		create_list(t_list *head, t_list *tail, t_list_meta *meta);
+t_list			*create_node(unsigned int x, unsigned int y);
+t_list_meta		*push_back(t_list *node, t_list_meta *meta);
+t_list_meta		*pop_back(t_list_meta *meta);
+int				include(unsigned int x, unsigned int y, t_list *head);
+t_map			*create_map_cpy(t_map *map);
+int				pathfinding_loop(t_map *map_cpy, unsigned int **cost_map,
+					t_list_meta *meta, t_list *next);
+void			clear_list(t_list_meta *meta);
+unsigned long	get_item(t_map *map);
+int				pathfinding_item(t_datas *datas, t_map *map_cpy,
+					unsigned int ix, unsigned int iy);
+t_map			*copy_map(t_map *map);
+unsigned int	**get_cost_map(t_map *map, t_map *map_cpy);
+void			is_item_valid(t_datas *datas);
 
 #endif

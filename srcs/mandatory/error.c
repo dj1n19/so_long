@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:24:50 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 15:38:44 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/20 11:52:52 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	ft_e_path(int errnum, t_datas *datas)
 	if (errnum == 1)
 		ft_printf("\e[31mERROR\n%s\n\e[0m", E_MALLOC);
 	datas->exit_code = 1;
-	ft_close(datas);	
+	ft_close(datas);
 }
