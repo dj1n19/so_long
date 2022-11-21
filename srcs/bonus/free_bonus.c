@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:12:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/20 15:46:20 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/21 14:15:00 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,17 @@ void	clear_list(t_list_meta *meta)
 	}
 }
 
-static void	free_map(char **map)
+void	free_map(t_map *map)
 {
-	while (*map)
+	int	i;
+ft_printf("GNAH\n");
+	i = 0;
+	while (i < map->y)
 	{
-		free(*map);
-		map++;
+		free(map->map[i]);
+		i++;
 	}
-	free(*map);
+	free(map->map);
 }
 
 static void	free_foes(t_foe **foes)
@@ -69,9 +72,9 @@ int	ft_close(t_datas *datas)
 	if (datas->win)
 		mlx_destroy_window(datas->mlx, datas->win);
 	if (datas->map->map)
-		free_map(datas->map->map);
-	if (datas->map->map)
-		free(datas->map->map);
+		free_map(datas->map);
+	// if (datas->map->map)
+	// 	free(datas->map->map);
 	if (datas->map)
 		free(datas->map);
 	if (datas->player)

@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:35:13 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/16 15:13:40 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/21 13:37:40 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void		*ft_spell_cast(void *dt);
 void		loot_item(t_datas *datas);
 void		clear_list(t_list_meta *meta);
 void		reset_player_anim(t_datas *datas);
+void		free_map(t_map *map);
 
 #endif

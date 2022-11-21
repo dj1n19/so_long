@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:12:59 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/20 15:29:26 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/21 13:39:38 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,25 @@ int	has_next(t_map *map, unsigned int x, unsigned int y)
 	return (has_next);
 }
 
-void	free_all(t_map *map_cpy, unsigned int **cost_map, t_list_meta *meta)
+void	free_all(t_map *map_cpy, unsigned int **cost_map,
+	t_list_meta *meta, int free_mc)
 {
 	int	i;
 
 	i = 0;
 	while (i < map_cpy->y)
 	{
-		free(map_cpy->map[i]);
-		free(cost_map[i]);
+		if (free_mc && map_cpy->map[i])
+			free(map_cpy->map[i]);
+		if (cost_map[i])
+			free(cost_map[i]);
 		i++;
 	}
-	free(map_cpy->map);
-	free(map_cpy);
+	if (map_cpy && free_mc)
+	{
+		free(map_cpy->map);
+		free(map_cpy);
+	}
 	free(cost_map);
 	clear_list(meta);
 }

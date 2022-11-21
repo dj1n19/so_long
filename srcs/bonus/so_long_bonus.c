@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 16:22:42 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 14:21:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/21 13:33:02 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	ft_init(char *file)
 	if (!pathfinding(datas, datas->map, datas->player->x / TILESIZE,
 			datas->player->y / TILESIZE))
 		error_handler(E_PATH, datas);
+	is_item_valid(datas);
 	mlx_hook(datas->win, 2, 1L << 0, ft_key_down, datas);
 	mlx_hook(datas->win, 3, 1L << 1, ft_key_up, datas);
 	mlx_hook(datas->win, 17, 0, ft_close, datas);
