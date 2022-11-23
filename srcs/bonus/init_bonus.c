@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:21:03 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 14:21:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/23 11:57:56 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ t_datas	*ft_init_datas(char *file)
 		error_handler(E_MALLOC, NULL);
 	datas->mlx = NULL;
 	datas->win = NULL;
+	datas->player_thread = NULL;
+	datas->move_thread = NULL;
+	datas->foe_thread = NULL;
+	datas->item_thread = NULL;
+	datas->attr = NULL;
+	datas->map = NULL;
+	datas->player = NULL;
+	datas->foes = NULL;
+	datas->textures = NULL;
 	datas->player = init_player();
 	init_map(datas, file);
 	init_foes(datas);

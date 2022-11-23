@@ -6,13 +6,13 @@
 #    By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 16:23:01 by bgenie            #+#    #+#              #
-#    Updated: 2022/11/21 14:15:05 by bgenie           ###   ########.fr        #
+#    Updated: 2022/11/23 11:58:30 by bgenie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra
 
 FRAMEWORK = -framework OpenGL -framework Appkit
 

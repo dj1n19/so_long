@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:07:27 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/21 14:01:13 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/23 12:07:09 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ unsigned long	get_item(t_map *map)
 		x_item = 1;
 		while (x_item < (unsigned)map->x - 1)
 		{
-			if (map->map[y_item][x_item] == 'C' || map->map[y_item][x_item] == 'K' || map->map[y_item][x_item] == 'G' || map->map[y_item][x_item] == 'A')
+			if (map->map[y_item][x_item] == 'C'
+				|| map->map[y_item][x_item] == 'K'
+				|| map->map[y_item][x_item] == 'G'
+				|| map->map[y_item][x_item] == 'A')
 			{
 				item_pos = ((unsigned long)y_item << 32);
 				item_pos += (unsigned long)x_item;
@@ -77,7 +80,8 @@ unsigned long	get_item(t_map *map)
 	return (0);
 }
 
-int	pathfinding_item(t_datas *datas, t_map *map_cpy, unsigned int ix, unsigned int iy)
+int	pathfinding_item(t_datas *datas, t_map *map_cpy,
+	unsigned int ix, unsigned int iy)
 {
 	unsigned int	**cost_map;
 	t_list_meta		meta;
@@ -103,7 +107,9 @@ void	is_item_valid(t_datas *datas)
 	item_pos = get_item(map_cpy);
 	while (item_pos != 0)
 	{
-		if (!pathfinding_item(datas, map_cpy, (unsigned)item_pos, (unsigned)(item_pos >> 32)))
+		printf(">>>(%u,%u)\n", (unsigned)item_pos, (unsigned)(item_pos >> 32));
+		if (!pathfinding_item(datas, map_cpy,
+				(unsigned)item_pos, (unsigned)(item_pos >> 32)))
 		{
 			free_map(map_cpy);
 			free(map_cpy);

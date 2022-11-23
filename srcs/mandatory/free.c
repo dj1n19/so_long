@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:12:28 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/20 15:18:24 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:21:10 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_close(t_datas *datas)
 		mlx_destroy_window(datas->mlx, datas->win);
 	if (datas)
 		free(datas);
+	system("leaks so_long");
 	exit(exit_code);
 	return (0);
 }

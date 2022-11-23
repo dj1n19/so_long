@@ -6,7 +6,7 @@
 /*   By: bgenie <bgenie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:14:09 by bgenie            #+#    #+#             */
-/*   Updated: 2022/11/19 14:21:03 by bgenie           ###   ########.fr       */
+/*   Updated: 2022/11/23 12:04:14 by bgenie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ int	map_check(t_map *map, int *items)
 		}
 		++y;
 	}
-	if (check_start(map) > 0 && check_items(map, items) > 0
-		&& check_exit(map) > 0 && check_edges(map) > 0)
+	if (check_start(map) == 1 && check_items(map, items) > 0
+		&& check_exit(map) == 1 && check_edges(map) > 0)
 		return (1);
 	return (0);
 }
