@@ -18,7 +18,6 @@
 # include <pthread.h>
 # include <errno.h>
 # include <limits.h>
-# include <stdio.h>
 # include "mlx.h"
 # include "assets_bonus.h"
 # include "structures_bonus.h"

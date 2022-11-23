@@ -27,11 +27,13 @@ typedef struct s_list_meta
 	unsigned int	size;
 }	t_list_meta;
 
-int				pathfinding(t_datas *datas, t_map *map, unsigned int px, unsigned int py);
+int				pathfinding(t_datas *datas, t_map *map,
+					unsigned int px, unsigned int py);
 t_list			*get_next(t_map *map, unsigned int **cost_map,
 					t_list *node, t_list *head);
 int				has_next(t_map *map, unsigned int x, unsigned int y);
-void			free_all(t_map *map_cpy, unsigned int **cost_map, t_list_meta *meta, int free_mc);
+void			free_all(t_map *map_cpy, unsigned int **cost_map,
+					t_list_meta *meta, int free_mc);
 t_list_meta		create_list(t_list *head, t_list *tail, t_list_meta *meta);
 t_list			*create_node(unsigned int x, unsigned int y);
 t_list_meta		*push_back(t_list *node, t_list_meta *meta);
